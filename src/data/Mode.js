@@ -1,0 +1,1 @@
+export const MODE=[{key:1,value:'Both'},{key:2,value:'Bank'},{key:3,value:'ATM'}];
