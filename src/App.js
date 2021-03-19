@@ -234,9 +234,7 @@ const App = () => {
             sm={{ offset: 7 }}
             style={{ color: "#7ABAC2", fontWeight: "bold" }}
           >
-            Nearest {data.type == 3 && "ATMS"}
-            {data.type == 1 && "Banks/ATMS"}
-            {data.type == 2 || (data.type == undefined && "Banks")} in this
+            Nearest Banks/ATMin this
             location :
           </Col>
           <List
@@ -277,7 +275,7 @@ const App = () => {
                           });
                         }}
                       >
-                        {bankData[item.bank_id - 1].bank_name}
+                        {bankData[item.bank_id-1].bank_name}
                       </u>
                     </a>
                   }
@@ -352,7 +350,7 @@ const App = () => {
       );
     });
   }
-
+console.log(bankData)
   /* ------------View --------------*/
   return (
     <Layout style={{ height: height }}>
