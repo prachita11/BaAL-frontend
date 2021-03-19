@@ -126,7 +126,6 @@ const App = () => {
     }
 
     keywords = keywords.slice(0, 1);
-
     let data = await getKeywordResults(keywords);
     setSelectedKeyword(data);
     searchResult(null, null, data);
@@ -158,7 +157,7 @@ const App = () => {
         return;
       }
     }
-    if (selectedKeyword !== "") {
+    if (selectedKeyword !== "" &&search=="") {
       search = { ...selectedKeyword };
       if (bank !== null) {
         search.data = search.data.filter((e) => e.bank_id == bank);
