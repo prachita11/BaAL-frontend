@@ -46,7 +46,7 @@ const App = () => {
   const [cityData, setCityData] = useState([]);
   const [bankData, setBankData] = useState([]);
   const [location, setLocation] = useState([]);
-  const [height, setHeight] = useState("350vh");
+  const [height, setHeight] = useState("370vh");
   const [searchKeywords, setSearchKeywords] = useState("");
   const [state, setState] = useState({
     lat: 20.795305507037043,
@@ -612,7 +612,7 @@ const App = () => {
                   setSelectedKeyword("");
                   setSearchKeywords("");
                   setCityData([]);
-                  setHeight("350vh");
+                  setHeight("370vh");
                 }}
               >
                 <ClearOutlined> </ClearOutlined> Reset Filter
