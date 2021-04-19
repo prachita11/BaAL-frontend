@@ -2,7 +2,12 @@ import axios from "axios";
 
 const getStates = async () => {
   try {
-    const response = await axios.get("https://baal.herokuapp.com/states");
+    const response = await axios.get("http://localhost:3001/states", {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+      },
+    });
     return response;
   } catch (error) {
     console.error(error);
@@ -12,7 +17,13 @@ const getStates = async () => {
 const getCities = async (state_id) => {
   try {
     const response = await axios.get(
-      "https://baal.herokuapp.com/cities/" + state_id
+      "http://localhost:3001/cities/" + state_id,
+      {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+        },
+      }
     );
     return response;
   } catch (error) {
@@ -22,7 +33,12 @@ const getCities = async (state_id) => {
 
 const getBanks = async () => {
   try {
-    const response = await axios.get("https://baal.herokuapp.com/banks");
+    const response = await axios.get("http://localhost:3001/banks", {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+      },
+    });
     return response;
   } catch (error) {
     console.error(error);
@@ -32,12 +48,21 @@ const getBanks = async () => {
 const getResults = async (state_id, city_id, bank_id, type) => {
   try {
     const data = await axios
-      .post(`https://baal.herokuapp.com/branch`, {
-        city_id: city_id,
-        bank_id: bank_id,
-        state_id: state_id,
-        type: type,
-      })
+      .post(
+        `http://localhost:3001/branch`,
+        {
+          city_id: city_id,
+          bank_id: bank_id,
+          state_id: state_id,
+          type: type,
+        },
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+          },
+        }
+      )
       .then((res) => {
         return res.data;
       });
@@ -47,10 +72,24 @@ const getResults = async (state_id, city_id, bank_id, type) => {
   }
 };
 
-const getKeywordResults = async (search) => {
+const getKeywordResults = async (state, city, bank, keyword) => {
   try {
     const data = await axios
-      .post(`https://baal.herokuapp.com/search`, { arr: search })
+      .post(
+        `http://localhost:3001/search`,
+        {
+          state: state,
+          city: city,
+          bank: bank,
+          keyword: keyword,
+        },
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+          },
+        }
+      )
       .then((res) => {
         return res.data;
       });
@@ -59,4 +98,26 @@ const getKeywordResults = async (search) => {
     console.error(error);
   }
 };
-export { getStates, getCities, getBanks, getResults, getKeywordResults };
+
+const getAPI = async (email) => {
+  try {
+    const data = await axios({
+      method: "get",
+      url: "http://localhost:3001/api/" + email,
+      responseType: "blob",
+    }).then((res) => {
+      return res;
+    });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+export {
+  getStates,
+  getCities,
+  getBanks,
+  getResults,
+  getKeywordResults,
+  getAPI,
+};
