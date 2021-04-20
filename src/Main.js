@@ -305,12 +305,12 @@ const Main = () => {
                             (x) => +x
                           );
                           window.scrollTo(0, 0);
+                          inputEl.current.click();
                           return setState({
                             lat: coords[0],
                             lng: coords[1],
                             zoom: 14,
                           });
-                          inputEl.current.click();
                         }}
                       >
                         {bankData[item.bank_id - 1].bank_name}
