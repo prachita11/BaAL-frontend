@@ -1,8 +1,9 @@
 import axios from "axios";
-
+let SERVER = "https://baal.herokuapp.com/";
+//let SERVER="http://localhost:3001/"
 const getStates = async () => {
   try {
-    const response = await axios.get("http://localhost:3001/states", {
+    const response = await axios.get(SERVER + "states", {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
@@ -16,15 +17,12 @@ const getStates = async () => {
 
 const getCities = async (state_id) => {
   try {
-    const response = await axios.get(
-      "http://localhost:3001/cities/" + state_id,
-      {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
-        },
-      }
-    );
+    const response = await axios.get(SERVER + "cities/" + state_id, {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+      },
+    });
     return response;
   } catch (error) {
     console.error(error);
@@ -33,7 +31,7 @@ const getCities = async (state_id) => {
 
 const getBanks = async () => {
   try {
-    const response = await axios.get("http://localhost:3001/banks", {
+    const response = await axios.get(SERVER + "banks", {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
@@ -49,7 +47,7 @@ const getResults = async (state_id, city_id, bank_id, type) => {
   try {
     const data = await axios
       .post(
-        `http://localhost:3001/branch`,
+        ` ${SERVER}branch`,
         {
           city_id: city_id,
           bank_id: bank_id,
@@ -76,7 +74,7 @@ const getKeywordResults = async (state, city, bank, keyword) => {
   try {
     const data = await axios
       .post(
-        `http://localhost:3001/search`,
+        `${SERVER}search`,
         {
           state: state,
           city: city,
@@ -103,7 +101,7 @@ const getAPI = async (email) => {
   try {
     const data = await axios({
       method: "get",
-      url: "http://localhost:3001/api/" + email,
+      url: SERVER + "api/" + email,
       responseType: "blob",
     }).then((res) => {
       return res;
