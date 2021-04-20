@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Layout,
   Avatar,
@@ -56,6 +56,7 @@ const Main = () => {
     zoom: 5,
   });
   let map;
+  const inputEl = useRef(null);
   /* ------------Flag to check if value is selected --------------*/
   const [isSearched, setIsSearched] = useState(false);
   const [selectedBank, setSelectedBank] = useState(null);
@@ -309,6 +310,7 @@ const Main = () => {
                             lng: coords[1],
                             zoom: 14,
                           });
+                          inputEl.current.click();
                         }}
                       >
                         {bankData[item.bank_id - 1].bank_name}
@@ -394,6 +396,7 @@ const Main = () => {
     return location.map((marker, index) => {
       return (
         <Marker
+          ref={inputEl}
           eventHandlers={{
             click: () => {
               map.setView(marker.coordinates, 14);
