@@ -56,7 +56,6 @@ const Main = () => {
     zoom: 5,
   });
   let map;
-  const inputEl = useRef(null);
   /* ------------Flag to check if value is selected --------------*/
   const [isSearched, setIsSearched] = useState(false);
   const [selectedBank, setSelectedBank] = useState(null);
@@ -305,7 +304,6 @@ const Main = () => {
                             (x) => +x
                           );
                           window.scrollTo(0, 0);
-                          inputEl.current.click();
                           return setState({
                             lat: coords[0],
                             lng: coords[1],
@@ -393,10 +391,10 @@ const Main = () => {
   }
   function Markers({ location }) {
     const map = useMap();
+
     return location.map((marker, index) => {
       return (
         <Marker
-          ref={inputEl}
           eventHandlers={{
             click: () => {
               map.setView(marker.coordinates, 14);
