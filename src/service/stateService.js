@@ -1,12 +1,13 @@
 import axios from "axios";
-let SERVER = "https://baal.herokuapp.com/";
-//let SERVER="http://localhost:3001/"
+//let SERVER = "https://baal.herokuapp.com/";
+let SERVER = "http://localhost:3001/";
+let TOKEN =
+  "eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw";
 const getStates = async () => {
   try {
     const response = await axios.get(SERVER + "states", {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+        Authorization: "Bearer " + TOKEN,
       },
     });
     return response;
@@ -19,8 +20,7 @@ const getCities = async (state_id) => {
   try {
     const response = await axios.get(SERVER + "cities/" + state_id, {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+        Authorization: "Bearer " + TOKEN,
       },
     });
     return response;
@@ -33,8 +33,7 @@ const getBanks = async () => {
   try {
     const response = await axios.get(SERVER + "banks", {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+        Authorization: "Bearer " + TOKEN,
       },
     });
     return response;
@@ -56,8 +55,7 @@ const getResults = async (state_id, city_id, bank_id, type) => {
         },
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+            Authorization: "Bearer " + TOKEN,
           },
         }
       )
@@ -83,8 +81,7 @@ const getKeywordResults = async (state, city, bank, keyword) => {
         },
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw",
+            Authorization: "Bearer " + TOKEN,
           },
         }
       )
@@ -97,11 +94,44 @@ const getKeywordResults = async (state, city, bank, keyword) => {
   }
 };
 
-const getAPI = async (email) => {
+const register = async (user) => {
+  try {
+    const data = await axios
+      .post(`${SERVER}api/register`, {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+      })
+      .then((res) => {
+        return res.data;
+      });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const userLogin = async (user) => {
+  try {
+    const data = await axios
+      .post(`${SERVER}api/login`, {
+        email: user.email,
+        password: user.password,
+      })
+      .then((res) => {
+        return res.data;
+      });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getAPI = async () => {
   try {
     const data = await axios({
       method: "get",
-      url: SERVER + "api/" + email,
+      url: SERVER + "api/",
       responseType: "blob",
     }).then((res) => {
       return res;
@@ -111,6 +141,104 @@ const getAPI = async (email) => {
     console.error(error);
   }
 };
+
+const getTransaction = async (api) => {
+  try {
+    const data = await axios({
+      method: "get",
+      url: SERVER + "transaction/" + api,
+    }).then((res) => {
+      return res;
+    });
+    return data.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getLimit = async (api) => {
+  try {
+    const data = await axios({
+      method: "get",
+      url: SERVER + "limit/" + api,
+    }).then((res) => {
+      return res;
+    });
+    return data.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const updatePass = async (api) => {
+  console.log(api);
+  try {
+    const data = await axios
+      .post(`${SERVER}api/changePass`, api, {
+        headers: {
+          Authorization: "Bearer " + api.token,
+        },
+      })
+      .then((res) => {
+        return res.data;
+      });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const updatePlan = async (api) => {
+  console.log(api);
+  try {
+    const data = await axios
+      .post(`${SERVER}updatePlan`, api, {
+        headers: {
+          Authorization: "Bearer " + api.token,
+        },
+        data: {
+          email: api.email,
+          price: api.price,
+          plan: api.plan,
+          limit: api.limit,
+        },
+      })
+      .then((res) => {
+        return res.data;
+      });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const resetPass = async (api) => {
+  console.log(api);
+  try {
+    const data = await axios
+      .post(`${SERVER}resetPass`, {
+        email: api.email,
+      })
+      .then((res) => {
+        return res.data;
+      });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const subscribe = async (aa) => {
+  try {
+    const data = await axios.post(`${SERVER}sub`, aa).then((res) => {
+      return res;
+    });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   getStates,
   getCities,
@@ -118,4 +246,12 @@ export {
   getResults,
   getKeywordResults,
   getAPI,
+  register,
+  userLogin,
+  getTransaction,
+  getLimit,
+  updatePass,
+  updatePlan,
+  resetPass,
+  subscribe,
 };

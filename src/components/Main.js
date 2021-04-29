@@ -29,15 +29,15 @@ import {
   ClearOutlined,
 } from "@ant-design/icons";
 import { CaretDownOutlined } from "@ant-design/icons";
-import "./App.css";
-import { MODE } from "./data/Mode";
+import "../App.css";
+import { MODE } from "../data/Mode";
 import {
   getStates,
   getCities,
   getBanks,
   getResults,
   getKeywordResults,
-} from "./service/stateService";
+} from "../service/stateService";
 const { Option } = Select;
 const { Header, Footer, Content } = Layout;
 
@@ -250,7 +250,6 @@ const Main = () => {
       result = (
         <Row
           style={{
-            padding: "40px",
             border: "solid gray",
             fontFamily: "Comic Sans MS",
           }}

@@ -1,0 +1,35 @@
+.menu :hover {
+  text-decoration: underline !important;
+  color: rgb(75, 73, 73);
+}
+.ant-table table {
+  font-size: 22px !important;
+}
+.ant-table-container table > thead > tr:first-child th {
+  background-color: rgb(68, 65, 65) !important;
+  color: white;
+}
+
+.ant-modal {
+  margin-right: 45% !important;
+}
+.ant-modal-content {
+  background-color: rgb(252, 251, 233) !important;
+  height: 550px !important;
+  width: 800px !important;
+}
+@media screen and (max-width: 720px) {
+  .ant-modal-content {
+    width: 350px !important;
+  }
+}
+.ant-modal-header {
+  background-color: rgb(147, 197, 114) !important;
+}
+.ant-modal-body {
+  height: 440px !important;
+}
+.ant-modal-title {
+  font-size: 28px !important;
+  color: white !important;
+}

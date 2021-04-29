@@ -50,7 +50,7 @@ code {
   border: solid gray 2px;
 }
 .ant-menu-item-selected {
-  padding: 5px !important;
+  padding: 1% !important;
   background-color: #62978f !important;
 }
 #toTopBtn {
@@ -91,4 +91,16 @@ code {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05) !important;
   background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1571057658/cd-top-arrow.svg)
     no-repeat center 50%;
+}
+.ant-menu-item {
+  font-size: 190% !important;
+}
+
+@media only screen and (max-width: 720px) {
+  .ant-menu-item {
+    font-size: 120% !important;
+  }
+  .ant-card {
+    width: 100% !important;
+  }
 }

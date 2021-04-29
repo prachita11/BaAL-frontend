@@ -1,44 +1,32 @@
 import { useState, useEffect } from "react";
-import { Layout, Avatar, Row, Col, Input, Menu, Button, Space } from "antd";
+import { BrowserView, MobileView } from "react-device-detect";
+import {
+  Layout,
+  Avatar,
+  Row,
+  Col,
+  Image,
+  Menu,
+  Button,
+  Space,
+  Spin,
+} from "antd";
 import "leaflet/dist/leaflet.css";
 import React from "react";
 import Logo from "./logo.jpg";
-import { GithubFilled, SkypeFilled, FacebookFilled } from "@ant-design/icons";
-import "./App.css";
-import { getAPI } from "./service/stateService";
+import {
+  GithubFilled,
+  SkypeFilled,
+  FacebookFilled,
+  HomeOutlined,
+} from "@ant-design/icons";
+import "../App.css";
+import { getAPI } from "../service/stateService";
 const { Header, Footer, Content, Sider } = Layout;
 const Developer = () => {
   /* ------------Select data population --------------*/
   const [menu, setMenu] = useState(1);
-  const [error, setError] = useState(false);
-  const [email, setEmail] = useState("");
 
-  const onSubscribe = async () => {
-    var pattern = new RegExp(
-      /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
-    );
-    if (email == "" || !pattern.test(email)) {
-      setError(true);
-      return;
-    }
-    console.log(email);
-    let data = await getAPI(email);
-    if (
-      data == undefined ||
-      data.headers["content-type"] == "application/json; charset=utf-8"
-    ) {
-      setError(true);
-      return;
-    }
-    console.log(data);
-    const url = window.URL.createObjectURL(new Blob([data.data]));
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", "BaAL-API.zip");
-    document.body.appendChild(link);
-    link.click();
-    console.log(data.headers["content-type"]);
-  };
   /* ------------View --------------*/
   return (
     <Layout style={{ backgroundColor: "black" }}>
@@ -50,21 +38,15 @@ const Developer = () => {
         }}
       >
         {" "}
-        <Row className="logo" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Row className="logo" style={{ width: "100%" }}>
           {" "}
-          <Col md={8} xs={24}>
-            <Avatar size={60} src={Logo} /> BaAL{" "}
-            <span
-              style={{
-                color: "gray",
-                fontFamily: "Open Sans",
-                fontSize: "19px",
-              }}
-            >
-              | Developer Portal
-            </span>
+          <Col md={5} xs={24}>
+            <Avatar size={60} src={Logo} />{" "}
+            <a href="/" style={{ color: "white" }}>
+              BaAL
+            </a>{" "}
           </Col>
-          <Col className="gutter-row" md={16}>
+          <Col md={14} xs={0}>
             {" "}
             Bank and ATM Location Finder{" "}
             <span
@@ -76,32 +58,18 @@ const Developer = () => {
             >
               | API documentation
             </span>
-            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-            <a href="/" style={{ color: "black", fontSize: "25px" }}>
-              Go to Main &nbsp; &nbsp;
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="26"
-                height="26"
-                fill="black"
-                className="bi bi-chevron-double-right"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
-                />
-              </svg>
+          </Col>
+          <Col md={{ span: 5 }} xs={0}>
+            <a href="/dev/home" style={{ color: "#474646", fontSize: "25px" }}>
+              Login
+              <HomeOutlined />
             </a>
           </Col>
         </Row>{" "}
       </Header>
-      <Layout style={{ padding: "70px" }}>
-        <Layout>
+      <Layout style={{ padding: "4%" }}>
+        {" "}
+        <Layout style={{ width: "100%" }}>
           <Menu
             mode="horizontal"
             defaultSelectedKeys={["1"]}
@@ -113,7 +81,7 @@ const Developer = () => {
           >
             <Menu.Item
               style={{
-                fontSize: "30px",
+                fontSize: "130%",
                 borderBottom: "solid gray 1px",
                 fontFamily: "Akaya Telivigala, cursive",
                 color: "white",
@@ -124,7 +92,7 @@ const Developer = () => {
             </Menu.Item>
             <Menu.Item
               style={{
-                fontSize: "30px",
+                fontSize: "130%",
                 borderBottom: "solid gray 1px",
                 fontFamily: "Akaya Telivigala, cursive",
                 color: "white",
@@ -149,8 +117,7 @@ const Developer = () => {
           >
             <Col
               md={{ offset: 10 }}
-              xs={{ offset: 5 }}
-              style={{ padding: "10px", fontSize: "35px" }}
+              style={{ padding: "10px", fontSize: "150%" }}
             >
               BaAL API Reference
             </Col>
@@ -188,54 +155,93 @@ const Developer = () => {
               >
                 <Col
                   md={20}
-                  xs={7}
+                  xs={24}
                   style={{ color: "black", fontWeight: "bolder" }}
                 >
                   1 ) Subscribe to recieve your API key and API collection kit :
                 </Col>
-                <Col xs={22} md={15} offset={6}>
-                  <Input
-                    placeholder="Email ID"
-                    onFocus={() => setError(false)}
-                    onChange={(e) => setEmail(e.target.value)}
-                    size={"large"}
-                  ></Input>
-                </Col>
-                <Col xs={22} md={9} offset={8}>
+                <Col xs={{ span: 22, offset: 0 }} md={{ span: 9, offset: 8 }}>
                   <Button
                     type="primary"
                     shape="round"
-                    onClick={onSubscribe}
-                    style={{ height: "40px", fontSize: "20px", width: "280px" }}
+                    onClick={() => window.location.replace("/dev/login")}
+                    style={{
+                      height: "50%",
+                      fontSize: "80%",
+                      width: "70%",
+                      backgroundColor: "#315B34 ",
+                    }}
                   >
-                    Subscribe
+                    Get Started
                   </Button>
-                  {error && (
-                    <span style={{ color: "red", fontSize: "18px" }}>
-                      &nbsp; Invalid Email !
-                    </span>
-                  )}
                 </Col>
               </Row>
               <Row
                 style={{
-                  paddingTop: "19px",
-                  paddingBottom: "19px",
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
                   fontSize: "21px",
                   fontFamily: "Arial",
                   color: "black",
                   textAlign: "center",
+                  width: "100%",
                 }}
               >
+                <Col md={24} xs={24} style={{ fontWeight: "bolder" }}>
+                  After Registering , you will get free 1000 api hits and be
+                  able to download the api collection
+                </Col>
+                <Col md={24} xs={24}>
+                  <Image
+                    width={"55%"}
+                    alt="zipped "
+                    src={process.env.PUBLIC_URL + "/register.png"}
+                  />
+                </Col>
+                <Col
+                  span={24}
+                  style={{
+                    fontSize: "19px",
+                    color: "brown",
+                    fontFamily: "arial",
+
+                    textAlign: "center",
+                  }}
+                >
+                  Click on "Download API collection to download the collection
+                  Zip file"
+                </Col>
+
+                <Col span={24} style={{ fontWeight: "bolder" }}>
+                  <br></br> <br></br>You can also choose our paid yearly
+                  subscription plans to get additional API limits
+                </Col>
+                <Col span={24}>
+                  <Image
+                    width={"55%"}
+                    alt="zipped "
+                    src={process.env.PUBLIC_URL + "/plans.png"}
+                  />{" "}
+                  <br></br> <br></br>
+                </Col>
+                <Col
+                  span={24}
+                  style={{
+                    fontSize: "19px",
+                    color: "brown",
+                    fontFamily: "arial",
+                    textAlign: "center",
+                  }}
+                >
+                  Click <a href="dev/plan"> here</a> to choose from our
+                  Subscription plans ! <br></br> <br></br>
+                </Col>
+
                 <Col span={24} style={{ fontWeight: "bolder" }}>
                   2 ) A zipped file will be downloaded which will consist of the
                   API collection in "json" format
                 </Col>
                 <Col span={24}>
-                  <img
-                    width={800}
+                  <Image
+                    width={"55%"}
                     alt="zipped "
                     src={process.env.PUBLIC_URL + "/file.png"}
                   />
@@ -250,28 +256,17 @@ const Developer = () => {
                     textAlign: "center",
                   }}
                 >
+                  <br></br> <br></br>
                   Fig 1.1 : Sample image of the downloaded Zip file
                 </Col>
-              </Row>
-              <Row
-                style={{
-                  paddingTop: "19px",
-                  paddingBottom: "19px",
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                  fontSize: "21px",
-                  fontFamily: "Arial",
-                  color: "black",
-                  textAlign: "center",
-                }}
-              >
+
                 <Col span={24} style={{ fontWeight: "bolder" }}>
-                  3 ) You will also recieve an email on the subscribed email ID
-                  with your API authentication key
+                  <br></br> <br></br>3 ) You will also recieve an email on the
+                  subscribed email ID with your API authentication key
                 </Col>
                 <Col span={24}>
-                  <img
-                    width={800}
+                  <Image
+                    width={"55%"}
                     alt="email "
                     src={process.env.PUBLIC_URL + "/email.png"}
                   />
@@ -284,21 +279,10 @@ const Developer = () => {
                     fontFamily: "arial",
                   }}
                 >
-                  Fig 1.2 : Sample E-mail recieved upon subscription
+                  <br></br> <br></br>Fig 1.2 : Sample E-mail recieved upon
+                  subscription <br></br> <br></br>
                 </Col>
-              </Row>
-              <Row
-                style={{
-                  paddingTop: "19px",
-                  paddingBottom: "19px",
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                  fontSize: "21px",
-                  fontFamily: "Arial",
-                  color: "black",
-                  textAlign: "center",
-                }}
-              >
+
                 <Col span={24} style={{ fontWeight: "bolder" }}>
                   4 ) Open{" "}
                   <a href="https://www.postman.com/">
@@ -318,8 +302,8 @@ const Developer = () => {
                   and click on "import" to import the downloaded collection
                 </Col>
                 <Col span={24}>
-                  <img
-                    width={800}
+                  <Image
+                    width={"55%"}
                     alt="email "
                     src={process.env.PUBLIC_URL + "/import.png"}
                   />
@@ -332,28 +316,17 @@ const Developer = () => {
                     fontFamily: "arial",
                   }}
                 >
-                  Fig 1.3 : Import section in Postman
+                  <br></br> <br></br> Fig 1.3 : Import section in Postman{" "}
+                  <br></br> <br></br>
                 </Col>
-              </Row>
-              <Row
-                style={{
-                  paddingTop: "19px",
-                  paddingBottom: "19px",
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                  fontSize: "21px",
-                  fontFamily: "Arial",
-                  color: "black",
-                  textAlign: "center",
-                }}
-              >
+
                 <Col span={24} style={{ fontWeight: "bolder" }}>
                   5 ) In the opened window , drag and drop the extracted "json
                   file" from the zipped folder
                 </Col>
                 <Col span={24}>
-                  <img
-                    width={800}
+                  <Image
+                    width={"55%"}
                     alt="email "
                     src={process.env.PUBLIC_URL + "/collection.png"}
                   />
@@ -366,27 +339,16 @@ const Developer = () => {
                     fontFamily: "arial",
                   }}
                 >
-                  Fig 1.4 : Collection import section in Postman
+                  <br></br> <br></br> Fig 1.4 : Collection import section in
+                  Postman <br></br> <br></br>
                 </Col>
-              </Row>
-              <Row
-                style={{
-                  paddingTop: "19px",
-                  paddingBottom: "19px",
-                  paddingLeft: "90px",
-                  paddingRight: "10px",
-                  fontSize: "21px",
-                  fontFamily: "Arial",
-                  color: "black",
-                  textAlign: "center",
-                }}
-              >
+
                 <Col span={24} style={{ fontWeight: "bolder" }}>
                   6 ) Once the file is uploaded , click on "Import "
                 </Col>
                 <Col span={24}>
-                  <img
-                    width={800}
+                  <Image
+                    width={"55%"}
                     alt="email "
                     src={process.env.PUBLIC_URL + "/collectionImport.png"}
                   />
@@ -399,27 +361,16 @@ const Developer = () => {
                     fontFamily: "arial",
                   }}
                 >
-                  Fig 1.5 : Import section in Postman
+                  <br></br> <br></br> Fig 1.5 : Import section in Postman{" "}
+                  <br></br> <br></br>
                 </Col>
-              </Row>
-              <Row
-                style={{
-                  paddingTop: "19px",
-                  paddingBottom: "19px",
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                  fontSize: "21px",
-                  fontFamily: "Arial",
-                  color: "black",
-                  textAlign: "center",
-                }}
-              >
+
                 <Col span={24} style={{ fontWeight: "bolder" }}>
                   7) The imported collection is located in "Collections tab"
                 </Col>
                 <Col span={24}>
-                  <img
-                    width={800}
+                  <Image
+                    width={"55%"}
                     alt="email "
                     src={process.env.PUBLIC_URL + "/imported.png"}
                   />
@@ -432,7 +383,8 @@ const Developer = () => {
                     fontFamily: "arial",
                   }}
                 >
-                  Fig 1.5 : Imported collection in Postman
+                  <br></br> <br></br>Fig 1.5 : Imported collection in Postman{" "}
+                  <br></br> <br></br>
                 </Col>
               </Row>
               <Col span={24} style={{ textAlign: "center" }}>
@@ -457,23 +409,24 @@ const Developer = () => {
               style={{
                 textAlign: "center",
                 backgroundColor: "#ffffff70",
-                padding: "14px",
+                padding: "3%",
               }}
             >
               <Space
                 direction={"vertical"}
                 style={{
-                  padding: "22px",
+                  padding: "1%",
                   border: "groove gray 5px",
                   textAlign: "center",
+                  width: "100%",
                 }}
                 size={375}
               >
-                <Row style={{ textAlign: "left", padding: "3px" }}>
+                <Row style={{ textAlign: "left" }}>
                   <Col span={24}>
                     <h1
                       style={{
-                        fontSize: "40px",
+                        fontSize: "130%",
                         backgroundColor: "rgba(211, 84, 94, 0.99)",
                         color: "white",
                       }}
@@ -490,7 +443,10 @@ const Developer = () => {
                   ></a>
                   <Col
                     span={24}
-                    style={{ fontSize: "30px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                    }}
                   >
                     <a
                       title="Prerequisites"
@@ -503,7 +459,10 @@ const Developer = () => {
                   <br></br>
                   <Col
                     span={24}
-                    style={{ fontSize: "30px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                    }}
                   >
                     <a
                       title="States"
@@ -516,7 +475,10 @@ const Developer = () => {
                   <br></br>
                   <Col
                     span={24}
-                    style={{ fontSize: "30px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                    }}
                   >
                     <a
                       title="Cities"
@@ -529,7 +491,10 @@ const Developer = () => {
                   <br></br>
                   <Col
                     span={24}
-                    style={{ fontSize: "30px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                    }}
                   >
                     <a
                       title="Banks"
@@ -542,7 +507,10 @@ const Developer = () => {
                   <br></br>
                   <Col
                     span={24}
-                    style={{ fontSize: "30px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                    }}
                   >
                     <a
                       title="Search"
@@ -552,13 +520,11 @@ const Developer = () => {
                       5. Post Search API{" "}
                     </a>
                   </Col>
-                </Row>
-                <Row style={{ textAlign: "center" }}>
                   <Col span={24}>
                     <a name="_Toc60330283"></a>
                     <h1
                       style={{
-                        fontSize: "32px",
+                        fontSize: "130%",
                         backgroundColor: "rgba(211, 84, 94, 0.99)",
                         color: "white",
                       }}
@@ -567,10 +533,13 @@ const Developer = () => {
                       <u>Prerequisites</u>
                     </h1>
                   </Col>
-
                   <Col
                     span={24}
-                    style={{ fontSize: "23px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                      textAlign: "center",
+                    }}
                   >
                     <h3>
                       {" "}
@@ -587,23 +556,24 @@ const Developer = () => {
                   </Col>
                   <Col
                     span={24}
-                    style={{ fontSize: "23px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                      textAlign: "center",
+                    }}
                   >
                     <br></br>
-                    <img
-                      width={1000}
-                      height={450}
+                    <Image
+                      width={"55%"}
                       alt="bearer "
                       src={process.env.PUBLIC_URL + "/bearer.png"}
-                    ></img>
+                    />
                   </Col>
-                </Row>
-                <Row style={{ textAlign: "center" }}>
                   <a name="_Toc60330284"></a>
                   <Col span={24}>
                     <h1
                       style={{
-                        fontSize: "32px",
+                        fontSize: "130%",
                         backgroundColor: "rgba(211, 84, 94, 0.99)",
                         color: "white",
                       }}
@@ -612,32 +582,33 @@ const Developer = () => {
                       <u>Get States API</u>
                     </h1>
                   </Col>
-
                   <Col
                     span={24}
-                    style={{ fontSize: "23px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                      textAlign: "center",
+                    }}
                   >
                     API :{" "}
                     <a href="https://baal.herokuapp.com/states">
                       https://baal.herokuapp.com/states
                     </a>
                     <br></br>
-                    <img
-                      width={800}
+                    <Image
+                      width={"55%"}
                       alt="states "
                       src={process.env.PUBLIC_URL + "/getStates.png"}
-                    ></img>
+                    />
                     <br></br>
                     This API gives the information of all states in a country ,
                     <b>Currently limited to India</b>
                   </Col>
-                </Row>
-                <Row style={{ textAlign: "center" }}>
                   <a name="_Toc60330285"></a>
                   <Col span={24}>
                     <h1
                       style={{
-                        fontSize: "32px",
+                        fontSize: "130%",
                         backgroundColor: "rgba(211, 84, 94, 0.99)",
                         color: "white",
                       }}
@@ -646,32 +617,33 @@ const Developer = () => {
                       <u>Get Cities API</u>
                     </h1>
                   </Col>
-
                   <Col
                     span={24}
-                    style={{ fontSize: "23px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "80%",
+                      fontWeight: "bolder",
+                      textAlign: "center",
+                    }}
                   >
                     API :{" "}
                     <a href="https://baal.herokuapp.com/cities/2">
                       https://baal.herokuapp.com/cities/:state_id
                     </a>
                     <br></br>
-                    <img
-                      width={800}
+                    <Image
+                      width={"55%"}
                       alt="states "
                       src={process.env.PUBLIC_URL + "/getCities.png"}
-                    ></img>
+                    />
                     <br></br>
                     This API gives the information of all cities , based on the
                     state id
                   </Col>
-                </Row>
-                <Row style={{ textAlign: "center" }}>
                   <a name="_Toc60330286"></a>
                   <Col span={24}>
                     <h1
                       style={{
-                        fontSize: "32px",
+                        fontSize: "130%",
                         backgroundColor: "rgba(211, 84, 94, 0.99)",
                         color: "white",
                       }}
@@ -680,32 +652,32 @@ const Developer = () => {
                       <u>Get Banks API</u>
                     </h1>
                   </Col>
-
                   <Col
                     span={24}
-                    style={{ fontSize: "23px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                      textAlign: "center",
+                    }}
                   >
                     API :{" "}
                     <a href="https://baal.herokuapp.com/banks">
                       https://baal.herokuapp.com/banks
                     </a>
                     <br></br>
-                    <img
-                      width={800}
+                    <Image
+                      width={"55%"}
                       alt="states "
                       src={process.env.PUBLIC_URL + "/getBanks.png"}
-                    ></img>
+                    />
                     <br></br>
                     This API gives the information of all banks in a country
                   </Col>
-                </Row>
-
-                <Row style={{ textAlign: "center" }}>
                   <a name="_Toc60330287"></a>
                   <Col span={24}>
                     <h1
                       style={{
-                        fontSize: "32px",
+                        fontSize: "130%",
                         backgroundColor: "rgba(211, 84, 94, 0.99)",
                         color: "white",
                       }}
@@ -714,21 +686,24 @@ const Developer = () => {
                       <u>Post Search API</u>
                     </h1>
                   </Col>
-
                   <Col
                     span={24}
-                    style={{ fontSize: "23px", fontWeight: "bolder" }}
+                    style={{
+                      fontSize: "100%",
+                      fontWeight: "bolder",
+                      textAlign: "center",
+                    }}
                   >
                     API :{" "}
                     <a href="https://baal.herokuapp.com/search">
                       https://baal.herokuapp.com/search
                     </a>
                     <br></br>
-                    <img
-                      width={800}
+                    <Image
+                      width={"55%"}
                       alt="states "
                       src={process.env.PUBLIC_URL + "/search.png"}
-                    ></img>
+                    />
                     <br></br>
                     This API gives the information of all banks that meet the
                     keyword criteria specified
