@@ -27,12 +27,13 @@ const Developer = () => {
           md={7}
           xs={24}
           style={{
-            backgroundColor: "white",
+            backgroundColor: "#ffffff33",
           }}
         >
           <div
             style={{
-              borderRight: "inset rgb(147, 197, 114) 4px",
+              textAlign: "center",
+              boxShadow: "0 7px 30px rgba(52, 31, 97, 30.342)",
             }}
           >
             <Avatar src={Logo} size={125}></Avatar>
@@ -112,9 +113,9 @@ const Developer = () => {
           >
             {" "}
             <Menu.Item
-              className="headings"
+              className="headings menu"
               style={{
-                fontSize: "130%",
+                fontSize: "2rem",
                 borderBottom: "solid gray 1px",
                 fontFamily: "Poppins, sans-serif ",
                 color: "white",
@@ -124,9 +125,9 @@ const Developer = () => {
               Getting Started
             </Menu.Item>
             <Menu.Item
-              className="headings"
+              className="headings menu"
               style={{
-                fontSize: "130%",
+                fontSize: "2rem",
                 borderBottom: "solid gray 1px",
                 fontFamily: "Poppins, sans-serif ",
                 color: "white",
