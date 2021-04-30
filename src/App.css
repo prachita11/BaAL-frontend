@@ -76,4 +76,11 @@
     padding-left: 15% !important;
     padding-right: 1% !important;
   }
+  .check {
+    background: linear-gradient(
+      to top,
+      whitesmoke 50%,
+      rgb(147, 197, 114) 50%
+    ) !important;
+  }
 }

@@ -30,7 +30,7 @@ const CheckoutForm = () => {
       base: {
         color: "#32325d",
         border: "solid gray 2px",
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontFamily: "'Poppins',sans-serif",
         fontSmoothing: "antialiased",
         fontSize: "16px",
         "::placeholder": {
@@ -149,14 +149,15 @@ const CheckoutForm = () => {
 
   return (
     <Layout>
-      <Layout style={{ height: "100vh" }}>
+      <Layout className="check" style={{ height: "100vh" }}>
         <Content
+          className="check"
           style={{
             color: "#5a5a5a",
             boxShadow: "    6px 6px 8px 8px gray",
             height: "100vh",
             background:
-              "linear-gradient(to right bottom,  rgb(147, 197, 114) 60% ,rgb(255 252 202 / 41%)  50%)",
+              "linear-gradient(to bottom ,  whitesmoke  50%,rgb(147, 197, 114) 50% )",
           }}
         >
           {" "}
@@ -167,41 +168,42 @@ const CheckoutForm = () => {
               paddingRight: "10%",
             }}
           >
-            <Col md={5} xs={24}>
-              <Image src={Logo} width={"70%"}></Image>
+            <Col md={13} xs={24}>
+              <img
+                src={Logo}
+                style={{ boxShadow: " 0 7px 30px rgba(52, 31, 97, .5)" }}
+                width={"60%"}
+              ></img>
               <br></br>
               <span
                 style={{
                   fontSize: "90px",
-                  paddingLeft: "13%",
+                  paddingLeft: "5%",
                   color: "white",
                   fontFamily: "Akaya Telivigala, cursive",
                 }}
               >
                 BaAL
               </span>
-            </Col>
-            <Col
-              md={{ offset: 3 }}
-              xs={{ span: 0 }}
-              style={{ height: "300px" }}
-            >
-              <div
+              <span
                 style={{
-                  height: "500px",
-                  backgroundColor: "gray",
-                  width: "3px",
+                  fontSize: "1.75rem",
+                  color: "gray",
+                  fontFamily: "Poppins, sans-serif",
                 }}
-              ></div>
+              >
+                | Developers Portal{" "}
+              </span>
             </Col>
+
             <Col
-              md={{ span: 12, offset: 3 }}
+              md={{ span: 11 }}
               xs={{ span: 24 }}
               style={{
                 backgroundColor: "white",
                 padding: "3%",
                 height: "40%",
-                border: "solid gray 2px",
+                boxShadow: " 0 7px 30px rgba(52, 31, 97, .5)",
               }}
             >
               {isError && (
@@ -212,6 +214,7 @@ const CheckoutForm = () => {
 
               <Col span={24}>
                 <Input
+                  style={{ fontFamily: "Poppins , sans-serif" }}
                   onFocus={() => setIsError(false)}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -224,6 +227,7 @@ const CheckoutForm = () => {
 
               <Col span={24}>
                 <Input
+                  style={{ fontFamily: "Poppins , sans-serif" }}
                   onFocus={() => setIsError(false)}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -236,6 +240,7 @@ const CheckoutForm = () => {
               </Col>
               <Col span={24}>
                 <Input
+                  style={{ fontFamily: "Poppins , sans-serif" }}
                   onFocus={() => setIsError(false)}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -247,7 +252,12 @@ const CheckoutForm = () => {
                 <br></br>
               </Col>
               <Col span={24}>
-                <span style={{ fontWeight: "bold" }}>
+                <span
+                  style={{
+                    fontWeight: "bold",
+                    fontFamily: "Poppins , sans-serif",
+                  }}
+                >
                   Subscription fee : {plan.price}
                 </span>
                 <br></br>
@@ -264,7 +274,13 @@ const CheckoutForm = () => {
                   onClick={(e) => handleSubmit(e)}
                   block
                   disabled={!stripe}
-                  style={{ fontSize: "17px" }}
+                  style={{
+                    fontSize: "17px",
+                    backgroundColor: "rgb(147, 197, 114)",
+                    border: "rgb(147, 197, 114)",
+                    fontFamily: "Poppins , sans-serif",
+                    fontWeight: "bold",
+                  }}
                 >
                   {loading && <Spin size={"large"}></Spin>} Pay
                 </Button>
