@@ -71,36 +71,37 @@ const DeveloperRegister = () => {
   /* ------------View --------------*/
   return (
     <Layout>
-      <Content style={{ backgroundColor: "#93C572", height: "100vh" }}>
+      <Content
+        className="back"
+        style={{
+          background:
+            "linear-gradient(to right ,white 50% ,  rgb(147, 197, 114) 50% )",
+          height: "100vh",
+        }}
+      >
         <Row style={{ height: "100%" }}>
           <Col
             md={12}
             xs={24}
             style={{
               marginTop: "10%",
-              backgroundColor: "#ffffffdb",
               height: "60%",
-              boxShadow: "    8px 8px 8px -8px black",
             }}
           >
             {" "}
             <Col
+              className="headings"
               style={{
                 paddingTop: "2%",
-                fontSize: "40px",
+                fontSize: "3rem",
+                color: "rgb(147, 197, 114)",
+                fontWeight: "bolder",
+                fontFamily: "Poppins, sans-serif",
               }}
-              offset={10}
+              offset={5}
             >
               {" "}
-              Register <br></br>
-            </Col>
-            <Col
-              span={24}
-              offset={8}
-              style={{
-                fontSize: "100%",
-              }}
-            >
+              Register
               <b
                 style={{
                   fontFamily: "Akaya Telivigala, cursive ",
@@ -110,9 +111,11 @@ const DeveloperRegister = () => {
                 BaAL
               </b>
               <span
+                className="titles"
                 style={{
                   color: "#444040",
-                  fontFamily: "Open Sans",
+                  fontFamily: "Poppins, sans-serif",
+                  fontSize: "1.5rem",
                 }}
               >
                 | Developer Portal
@@ -147,8 +150,8 @@ const DeveloperRegister = () => {
                 onFocus={() => setError(false)}
                 onChange={(e) => setName(e.target.value)}
                 style={{
-                  boxShadow: " 8px 8px 8px -8px black",
-                  height: "40px",
+                  height: "50px",
+                  borderRadius: "10px",
                   color: "gray",
                 }}
                 placeholder="Name "
@@ -168,8 +171,8 @@ const DeveloperRegister = () => {
                 onFocus={() => setError(false)}
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
-                  boxShadow: " 8px 8px 8px -8px black",
-                  height: "40px",
+                  height: "50px",
+                  borderRadius: "10px",
                   color: "gray",
                 }}
                 placeholder="Email "
@@ -189,38 +192,57 @@ const DeveloperRegister = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 style={{
-                  boxShadow: " 8px 8px 8px -8px black",
-                  height: "40px",
+                  height: "50px",
+                  borderRadius: "10px",
                   color: "gray",
                 }}
                 placeholder="Password"
               />
+              <br></br>
+              <br></br>
             </Col>
             <Col
               span={24}
               style={{
                 paddingTop: "2%",
-                paddingLeft: "40%",
+                paddingLeft: "27%",
                 paddingRight: "10%",
               }}
             >
               <Button
+                className="update"
                 type="primary"
                 onClick={onSubscribe}
-                style={{ fontSize: "22px", height: "55px", width: "180px" }}
+                style={{
+                  fontSize: "28px",
+                  fontWeight: "bold",
+                  fontFamily: "Poppins, sans-serif",
+                  borderRadius: "25px",
+                  height: "55px",
+                  width: "400px",
+                  backgroundColor: "rgb(147, 197, 114)",
+                  border: "rgb(147, 197, 114)",
+                }}
               >
                 {loading && <Spin />} Register
               </Button>
             </Col>
             <Col
+              className="titles"
               span={24}
               style={{
                 paddingTop: "2%",
                 paddingLeft: "30%",
                 paddingRight: "10%",
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: "bold",
               }}
             >
-              Already have an account ? <a href="login">Log In Here</a> .
+              Already have an account ?{" "}
+              <a href="login" style={{ color: "rgb(147, 197, 114)" }}>
+                Sign In{" "}
+              </a>{" "}
+              .
             </Col>{" "}
           </Col>
 
@@ -237,6 +259,7 @@ const DeveloperRegister = () => {
                 <img
                   style={{
                     boxShadow: " 8px 8px 8px -8px black",
+                    opacity: "0.8",
                   }}
                   src={Logo}
                   width={300}

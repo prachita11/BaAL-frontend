@@ -1,6 +1,6 @@
 import axios from "axios";
-let SERVER = "https://baal.herokuapp.com/";
-//let SERVER = "http://localhost:3001/";
+//let SERVER = "https://baal.herokuapp.com/";
+let SERVER = "http://localhost:3001/";
 let TOKEN =
   "eyJhbGciOiJIUzI1NiJ9.NjJiMmMzNGItZTA5ZS00OGI3LTk2ZTQtYmQ3NDdkNTgzYjc3.5uewAGSnKlb6JzfnanvDNHkSIiraCByBPObXBMrntzw";
 const getStates = async () => {

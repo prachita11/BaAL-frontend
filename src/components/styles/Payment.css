@@ -1,0 +1,139 @@
+.BASIC,
+.ENTERPRISE {
+  background-color: white !important;
+  height: 110% !important;
+  border-radius: 2% !important;
+  box-shadow: 0 7px 30px rgba(52, 31, 97, 0.1) !important;
+}
+.PROFESSIONAL {
+  background-color: rgb(147, 197, 114) !important;
+  border-radius: 2% !important;
+  color: white !important;
+  height: 115% !important;
+  box-shadow: 0 7px 30px rgba(52, 31, 97, 0.342) !important;
+}
+.PROFESSIONAL1 {
+  padding-top: 2% !important;
+  padding-left: 11% !important;
+}
+.BASIC1,
+.ENTERPRISE1 {
+  padding-top: 3% !important;
+  padding-left: 10% !important;
+}
+
+.BASIC1 {
+  padding-left: 12% !important;
+}
+.price-header {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+.PROFESSIONAL .price-header {
+  color: white !important;
+}
+.price {
+  font-size: 3.5rem;
+  display: flex;
+}
+.rupee-sign {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  margin-right: 0.25rem;
+}
+.year-sign {
+  font-size: 0.75rem;
+  align-self: flex-end;
+  margin-bottom: 1.1rem;
+  text-transform: uppercase;
+}
+.year-sign {
+  font-size: 0.75rem;
+  align-self: flex-end;
+  margin-bottom: 1.1rem;
+  text-transform: uppercase;
+}
+.plan {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.PROFESSIONAL .divider {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.PROFESSIONAL .price-header {
+  top: 0.6rem !important;
+}
+.most-popular {
+  text-align: right !important;
+  text-transform: uppercase !important;
+  font-weight: bold !important;
+  font-family: "Poppins", sans-serif !important;
+  color: yellow !important;
+  width: 10rem !important;
+}
+.feature.inactive {
+  color: #999;
+  text-decoration-line: line-through;
+  font-size: 1rem;
+}
+.feature {
+  display: flex;
+  font-size: 1.25rem;
+  margin: 0.5rem;
+  align-items: center !important;
+  font-family: "Poppins", sans-serif;
+}
+.feature img {
+  height: 1.1em;
+  width: 1.1em;
+  margin-right: 0.5rem;
+}
+.price-column {
+  position: relative !important;
+}
+.cta {
+  border: none !important;
+  background-color: rgb(147, 197, 114) !important;
+  color: white !important;
+  width: 100% !important;
+  height: 3rem !important;
+  padding: 0.7rem 1rem !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+  border-radius: 15px !important;
+  margin-top: 3rem;
+  transition: 100ms;
+  transform: scale(1);
+}
+
+.PROFESSIONAL .cta {
+  background-color: white !important;
+  color: rgb(147, 197, 114) !important;
+}
+.cta:hover,
+.cta:focus {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 720px) {
+  .PROFESSIONAL1,
+  .BASIC1,
+  .ENTERPRISE1 {
+    padding-left: 0% !important;
+    padding-top: 0% !important;
+  }
+}

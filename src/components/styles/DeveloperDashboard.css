@@ -1,6 +1,16 @@
 .menu :hover {
   text-decoration: underline !important;
   color: rgb(75, 73, 73);
+  transform: scale(1.1) !important;
+}
+.men {
+  transition: 100ms !important;
+  transform: scale(1) !important;
+  box-shadow: 0 3px 12px rgb(52 31 97 / 89%) !important;
+}
+.men:hover,
+.men:focus {
+  transform: scale(1.1) !important;
 }
 .ant-table table {
   font-size: 22px !important;
@@ -32,4 +42,62 @@
 .ant-modal-title {
   font-size: 28px !important;
   color: white !important;
+}
+
+@media screen and (max-width: 720px) {
+  .ant-descriptions-item-content,
+  .ant-descriptions-item-label {
+    font-size: 90% !important;
+  }
+  .men:hover,
+  .men:focus {
+    transform: none !important;
+  }
+  .ant-table table {
+    font-size: 14px !important;
+  }
+  .titles {
+    font-size: 14px !important;
+  }
+  .men {
+    font-size: 14px !important;
+    width: 10rem !important;
+    height: 4rem !important;
+  }
+  .headings {
+    font-size: 19px !important;
+  }
+  .ant-btn,
+  .ant-btn-round {
+    font-size: 14px !important;
+    width: 15rem !important;
+    height: 4rem !important;
+  }
+  .update {
+    width: 10rem !important;
+    height: 2rem !important;
+  }
+  .ant-input {
+    font-size: 14px !important;
+  }
+  .ant-layout-header {
+    font-size: 14px !important;
+  }
+  .doc {
+    width: 22rem !important;
+    margin-left: -62%;
+    height: 11rem !important;
+  }
+  .doc2 {
+    width: 19rem !important;
+    margin-left: -62%;
+    height: 11rem !important;
+  }
+  .mod {
+    background-color: rgb(147, 197, 114) !important;
+    color: white !important;
+    font-family: "Poppins" sans-serif;
+    width: 5rem !important;
+    margin-top: -3.25rem !important;
+  }
 }

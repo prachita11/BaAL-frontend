@@ -53,29 +53,37 @@ const DeveloperLogin = () => {
   /* ------------View --------------*/
   return (
     <Layout>
-      <Content style={{ backgroundColor: "#93C572", height: "100vh" }}>
+      <Content
+        className="back"
+        style={{
+          background:
+            "linear-gradient(to right ,white 50% ,  rgb(147, 197, 114) 50% )",
+          height: "100vh",
+        }}
+      >
         <Row>
           <Col
             md={12}
             xs={24}
             style={{
               marginTop: "10%",
-              backgroundColor: "#ffffffdb",
               height: "60%",
-              boxShadow: "    8px 8px 8px -8px black",
             }}
           >
             <Row>
               <Col
+                className="headings"
                 xs={24}
                 md={{ offset: 6 }}
                 style={{
                   paddingTop: "2%",
-                  fontSize: "30px",
+                  fontSize: "4rem",
+                  fontWeight: "bold",
+                  color: "rgb(147, 197, 114)",
                 }}
               >
                 {" "}
-                Log In to{" "}
+                Sign in to{" "}
                 <b
                   style={{
                     fontFamily: "Akaya Telivigala, cursive ",
@@ -85,9 +93,11 @@ const DeveloperLogin = () => {
                   BaAL
                 </b>
                 <span
+                  className="titles"
                   style={{
                     color: "#444040",
                     fontFamily: "Open Sans",
+                    fontSize: "1.5rem",
                   }}
                 >
                   | Developer Portal
@@ -123,14 +133,15 @@ const DeveloperLogin = () => {
                 }}
               >
                 <Input
+                  className="in"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onFocus={() => setError(false)}
                   style={{
-                    boxShadow: " 8px 8px 8px -8px black",
-                    height: "40px",
+                    height: "50px",
                     color: "gray",
-                    border: "solid black 2px",
+                    borderRadius: "15px",
+                    backgroundColor: "#eeeeee !important",
                   }}
                   placeholder="Email"
                 />
@@ -144,12 +155,15 @@ const DeveloperLogin = () => {
                 }}
               >
                 <Input.Password
+                  className="in"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setError(false)}
                   style={{
-                    height: "40px",
+                    height: "50px",
                     color: "gray",
+                    backgroundColor: "#eeeeee !important",
+                    borderRadius: "15px",
                   }}
                   placeholder="Password"
                   iconRender={(visible) =>
@@ -157,41 +171,69 @@ const DeveloperLogin = () => {
                   }
                 />
               </Col>
-              <Col offset={17}>
-                <a href="forgotPass">Forgot Password?</a>
+              <Col offset={9}>
+                <br></br>
+                <br></br>
+                <a
+                  className="titles"
+                  style={{
+                    fontSize: "1.5rem",
+                    color: "black",
+                    fontFamily: "Poppins, sans-serif",
+                  }}
+                  href="forgotPass"
+                >
+                  Forgot Password?
+                </a>
               </Col>
               <Col
                 span={24}
                 style={{
                   paddingTop: "2%",
-                  paddingLeft: "40%",
+                  paddingLeft: "35%",
                   paddingRight: "10%",
                 }}
               >
                 <Button
+                  className="update"
                   type="primary"
                   onClick={handleLogin}
-                  style={{ fontSize: "22px", height: "55px", width: "180px" }}
+                  style={{
+                    fontSize: "1.5rem",
+                    height: "55px",
+                    width: "250px",
+                    borderRadius: "25px",
+                    backgroundColor: "rgb(147, 197, 114)",
+                    border: "solid rgb(147, 197, 114)",
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: "bold",
+                  }}
                 >
-                  {loading && <Spin />} Log In
+                  {loading && <Spin />} Sign In
                 </Button>
               </Col>
               <Col
+                className="titles"
                 span={24}
                 style={{
                   paddingTop: "2%",
-                  paddingLeft: "30%",
+                  paddingLeft: "25%",
                   paddingRight: "10%",
+                  fontSize: "1.5rem",
+                  fontFamily: "Poppins, sans-serif",
                 }}
               >
-                New to Developer's portal? <a href="register">Register Here </a>
+                New to Developer's portal?{" "}
+                <a href="register" style={{ color: "rgb(147, 197, 114)" }}>
+                  Register Here{" "}
+                </a>
                 .
               </Col>
             </Row>{" "}
           </Col>
           <Col
             md={12}
-            xs={24}
+            xs={0}
             style={{
               marginTop: "10%",
               height: "60%",
@@ -199,9 +241,10 @@ const DeveloperLogin = () => {
           >
             <Row>
               <Col span={24} style={{ paddingLeft: "25%" }}>
-                <Image
+                <img
                   style={{
                     boxShadow: " 8px 8px 8px -8px black",
+                    opacity: "0.9",
                   }}
                   src={Logo}
                   width={"80%"}

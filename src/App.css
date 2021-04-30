@@ -37,26 +37,43 @@
   }
 }
 
-.Option{
-    font-size: 18px  !important;
-    font-family: "Comic Sans MS";
+.Option {
+  font-size: 18px !important;
+  font-family: "Comic Sans MS";
+}
+.ant-select {
+  border: 2px solid black !important;
+}
+.ant-input-affix-wrapper {
+  background-color: white !important;
+  border: 2px solid black !important;
+  font-size: 19px !important;
+}
 
+.large {
+  color: #86ad63;
+  font-size: 28px;
 }
-.ant-select{
-  border:2px solid black  !important;
+.small {
+  color: #86ad63;
+  font-size: 21px;
 }
-.ant-input-affix-wrapper{
-background-color: white  !important;
-border:2px solid black  !important;
-font-size: 19px !important;
+.ant-input-affix-wrapper,
+.ant-input {
+  border: none !important;
+  background-color: #eeeeee !important;
 }
 
-.large{
-color:#86AD63;
-font-size:28px;
-}
-.small{
-  color:#86AD63;
-  font-size:21px;
+@media screen and (max-width: 720px) {
+  .back {
+    background: linear-gradient(
+      to bottom,
+      white 90%,
+      rgb(147, 197, 114) 10%
+    ) !important;
   }
- 
+  .forgotp {
+    padding-left: 15% !important;
+    padding-right: 1% !important;
+  }
+}

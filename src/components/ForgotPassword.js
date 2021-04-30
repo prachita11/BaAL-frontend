@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Layout, Row, Col, Input, Button, Spin } from "antd";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { EyeInvisibleOutlined, LockOutlined } from "@ant-design/icons";
 import "leaflet/dist/leaflet.css";
 import React from "react";
 import "../App.css";
@@ -38,52 +38,44 @@ const ForgotPassword = () => {
   /* ------------View --------------*/
   return (
     <Layout>
-      <Content style={{ backgroundColor: "#93C572", height: "100vh" }}>
+      <Content
+        style={{
+          background:
+            "linear-gradient(to right ,white 70%,  rgb(147, 197, 114) 30%)",
+          height: "100vh",
+        }}
+      >
         <Row style={{ height: "100%" }}>
           <Col
             md={{ offset: 6, span: 10 }}
             xs={24}
             style={{
               marginTop: "10%",
-              backgroundColor: "#ffffffdb",
+              backgroundColor: "white",
               height: "60%",
-              boxShadow: "    8px 8px 8px -8px black",
+              borderRadius: "25px",
+              boxShadow: " 0 3px 12px rgb(52 31 97 / 89%)",
             }}
           >
             <Row>
               <Col
+                className="headings"
                 style={{
                   paddingTop: "2%",
                   paddingLeft: "4%",
-                  fontSize: "30px",
+                  fontSize: "3rem",
+                  fontWeight: "bold",
+                  color: "rgb(147, 197, 114)",
+                  fontFamily: "Poppins ,sans-serif",
                 }}
                 offset={6}
               >
                 {" "}
-                <i
-                  style={{
-                    paddingLeft: "20%",
-                  }}
-                >
-                  Forgot Password
-                </i>{" "}
+                <LockOutlined
+                  style={{ fontSize: "6rem", paddingLeft: "34%" }}
+                />{" "}
                 <br></br>
-                <b
-                  style={{
-                    fontFamily: "Akaya Telivigala, cursive ",
-                  }}
-                >
-                  {" "}
-                  BaAL
-                </b>
-                <span
-                  style={{
-                    color: "#444040",
-                    fontFamily: "Open Sans",
-                  }}
-                >
-                  | Developer Portal
-                </span>
+                Reset Password
               </Col>
 
               <Col
@@ -119,42 +111,55 @@ const ForgotPassword = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   onFocus={() => setError(false)}
                   style={{
-                    boxShadow: " 8px 8px 8px -8px black",
-                    height: "40px",
+                    height: "60px",
                     color: "gray",
-                    border: "solid black 2px",
+                    fontFamily: "Poppins , sans-serif",
+                    borderRadius: "10px",
                   }}
                   placeholder="Email"
                 />
               </Col>
 
               <Col
+                className="forgotp"
                 span={24}
                 style={{
                   paddingTop: "2%",
-                  paddingLeft: "40%",
+                  paddingLeft: "10%",
                   paddingRight: "10%",
                 }}
               >
                 <Button
                   block
                   type="primary"
+                  block
                   onClick={sendMail}
-                  style={{ fontSize: "22px", height: "55px", width: "180px" }}
+                  style={{
+                    fontSize: "22px",
+                    height: "55px",
+                    backgroundColor: "rgb(147, 197, 114)",
+                    border: "rgb(147, 197, 114)",
+                    fontFamily: "Poppins,sans-serif",
+                  }}
                 >
                   {loading && <Spin />} Send reset link
                 </Button>
                 <br></br> <br></br> <br></br>
               </Col>
               <Col
+                className="titles"
                 span={24}
                 style={{
                   paddingTop: "2%",
                   paddingLeft: "38%",
                   paddingRight: "10%",
+                  fontFamily: "Poppins,sans-serif",
                 }}
               >
-                Go back to <a href="login">login</a>.
+                Go back to{" "}
+                <a href="login" style={{ color: "rgb(147, 197, 114)" }}>
+                  Sign In
+                </a>
               </Col>
             </Row>{" "}
           </Col>

@@ -56,7 +56,6 @@ const DeveloperDashboard = () => {
   const [limit, setLimit] = useState(0);
   const [plan, setPlan] = useState("Free");
   const [expiryDate, setExpiryDate] = useState("N/A");
-  const [timer, settimer] = useState(true);
   const dispatch = useDispatch();
   const userDetails = useSelector((state) => state.login);
   const auth = useSelector((state) => state.auth);
@@ -78,9 +77,7 @@ const DeveloperDashboard = () => {
     setIsProfileModalVisible(true);
     setMsg(false);
   };
-  useEffect(() => {
-    setTimeout(() => settimer(false), 1000);
-  }, []);
+
   const handleUpdateProfileOk = async () => {
     let data = {
       email: userDetails.email,
@@ -219,6 +216,7 @@ const DeveloperDashboard = () => {
           <Col md={8} xs={12}>
             <Avatar size={60} src={Logo} />{" "}
             <span
+              className="headings"
               style={{
                 fontFamily: " Akaya Telivigala, cursive ",
                 fontSize: "30px",
@@ -263,6 +261,7 @@ const DeveloperDashboard = () => {
           </Col>
           <Col>
             <span
+              className="headings"
               style={{ cursor: "pointer", fontSize: "27px" }}
               onClick={async () => {
                 await dispatch(logOut());
@@ -282,8 +281,8 @@ const DeveloperDashboard = () => {
         <Content
           style={{
             color: "#5a5a5a",
-            boxShadow: "    6px 6px 8px 8px gray",
-            backgroundColor: "rgb(252, 251, 233)",
+            backgroundColor: "white",
+            borderRadius: "25px",
           }}
         >
           {" "}
@@ -294,6 +293,7 @@ const DeveloperDashboard = () => {
             }}
           >
             <Col
+              className="headings"
               md={{ offset: 10 }}
               xs={{ offset: 5 }}
               style={{ padding: "10px", fontSize: "30px" }}
@@ -304,25 +304,25 @@ const DeveloperDashboard = () => {
           <Row>
             <Col md={{ offset: 4 }} style={{ paddingLeft: "1.7%" }}>
               <div
-                classapi="menu"
+                className="men"
                 style={{
                   height: "150px",
                   width: "350px",
-                  backgroundColor: "rgb(255 127 83 / 70%) ",
+                  backgroundColor: "#F3C363",
                   color: "white",
                   fontSize: "27px",
                   textAlign: "center",
                   fontWeight: "bold",
-                  boxShadow: "    6px 6px 4px 4px gray",
+                  borderRadius: "25px",
                 }}
               >
                 <div
-                  classapi="menu"
                   onClick={() => setMenu(1)}
                   style={{
                     paddingTop: "17%",
                     height: "200px",
                     cursor: "pointer",
+                    fontFamily: "Poppins, sans-serif ",
                   }}
                 >
                   {" "}
@@ -332,26 +332,25 @@ const DeveloperDashboard = () => {
             </Col>
             <Col style={{ paddingLeft: "1.7%" }}>
               <div
-                classapi="menu"
+                className="men"
                 style={{
                   height: "150px",
                   width: "350px",
-                  backgroundColor: "rgb(146 156 183 / 72%)",
+                  backgroundColor: "#C2D9D2",
                   color: "white",
                   fontSize: "27px",
                   textAlign: "center",
                   fontWeight: "bold",
-
-                  boxShadow: "    6px 6px 4px 4px gray",
+                  borderRadius: "25px",
                 }}
               >
                 <div
-                  classapi="menu"
                   onClick={() => window.location.replace("/api")}
                   style={{
                     paddingTop: "17%",
                     height: "200px",
                     cursor: "pointer",
+                    fontFamily: "Poppins, sans-serif ",
                   }}
                 >
                   Documentation
@@ -360,21 +359,25 @@ const DeveloperDashboard = () => {
             </Col>
             <Col style={{ paddingLeft: "1.7%" }}>
               <div
-                classapi="menu"
+                className="men"
                 style={{
                   height: "150px",
                   width: "350px",
-                  backgroundColor: "rgb(37 51 189 / 61%)",
+                  backgroundColor: "#765259",
                   color: "white",
                   fontSize: "27px",
                   textAlign: "center",
                   fontWeight: "bold",
-                  boxShadow: "    6px 6px 4px 4px gray",
+                  borderRadius: "25px",
                 }}
               >
                 <div
                   onClick={() => setMenu(3)}
-                  style={{ paddingTop: "17%", cursor: "pointer" }}
+                  style={{
+                    paddingTop: "17%",
+                    cursor: "pointer",
+                    fontFamily: "Poppins, sans-serif ",
+                  }}
                 >
                   Profile
                 </div>
@@ -386,21 +389,18 @@ const DeveloperDashboard = () => {
               span={24}
               style={{
                 padding: "5%",
-                boxShadow: "    -1px 1px 1px 1px gray",
               }}
             >
-              {timer ? (
-                <Skeleton active></Skeleton>
-              ) : menu == 1 ? (
+              {menu == 1 ? (
                 <Row>
                   <Col>
                     <span
+                      className="titles"
                       style={{
-                        fontFamily: "Open Sans",
-                        fontWeight: "bolder",
+                        fontFamily: "Poppins, sans-serif ",
+                        fontWeight: "bold",
                         fontSize: "25px",
-                        color: "black",
-                        backgroundColor: "antiquewhite",
+                        color: "#5d8b46",
                       }}
                     >
                       {" "}
@@ -411,7 +411,7 @@ const DeveloperDashboard = () => {
                   <Col md={{ span: 8, offset: 1 }} xs={24}>
                     <Input
                       style={{
-                        fontFamily: "Open Sans",
+                        fontFamily: "Poppins, sans-serif ",
                         fontWeight: "bolder",
                         fontSize: "18px",
                       }}
@@ -422,12 +422,12 @@ const DeveloperDashboard = () => {
                   </Col>
                   <Col md={{ offset: 5 }}>
                     <span
+                      className="titles"
                       style={{
-                        fontFamily: "Open Sans",
+                        fontFamily: "Poppins, sans-serif ",
                         fontWeight: "bolder",
                         fontSize: "25px",
-                        color: "black",
-                        backgroundColor: "antiquewhite",
+                        color: "#5d8b46",
                       }}
                     >
                       {" "}
@@ -443,7 +443,8 @@ const DeveloperDashboard = () => {
                         fontSize: "100%",
                         backgroundColor: "rgba(211, 84, 94, 0.99)",
                         color: "white",
-                        fontFamily: "Open Comic Sans",
+                        fontFamily: "Poppins, sans-serif ",
+                        boxShadow: " 0 7px 10px rgba(52, 31, 97, 0.342) ",
                       }}
                     >
                       {" "}
@@ -453,12 +454,12 @@ const DeveloperDashboard = () => {
                   </Col>
                   <Col md={11} xs={0}>
                     <span
+                      className="titles"
                       style={{
-                        fontFamily: "Open Sans",
+                        fontFamily: "Poppins, sans-serif ",
                         fontWeight: "bolder",
                         fontSize: "25px",
-                        color: "black",
-                        backgroundColor: "antiquewhite",
+                        color: "#5d8b46",
                       }}
                     >
                       <BuildOutlined style={{ color: "gray" }} />
@@ -467,17 +468,18 @@ const DeveloperDashboard = () => {
                   </Col>
                   <Col md={{ span: 8, offset: 5 }} xs={24}>
                     <span
+                      className="titles"
                       style={{
-                        fontFamily: "Open Sans",
+                        fontFamily: "Poppins, sans-serif ",
                         fontWeight: "bolder",
                         fontSize: "25px",
-                        color: "black",
-                        backgroundColor: "antiquewhite",
+                        color: "#5d8b46",
                       }}
                     >
                       <BuildOutlined style={{ color: "gray" }} />
                       API hits available :{" "}
                       <span
+                        className="titles"
                         title="Available api hits"
                         style={{
                           color: "#315B34",
@@ -502,12 +504,12 @@ const DeveloperDashboard = () => {
                   </Col>
                   <Col md={0} xs={24}>
                     <span
+                      className="titles"
                       style={{
-                        fontFamily: "Open Sans",
+                        fontFamily: "Poppins, sans-serif ",
                         fontWeight: "bolder",
                         fontSize: "25px",
-                        color: "black",
-                        backgroundColor: "antiquewhite",
+                        color: "#5d8b46",
                       }}
                     >
                       <BuildOutlined style={{ color: "gray" }} />
@@ -518,7 +520,10 @@ const DeveloperDashboard = () => {
                   <Col md={24}>
                     <Table
                       respo
-                      style={{ fontSize: "70%" }}
+                      style={{
+                        fontSize: "70%",
+                        fontFamily: "Poppins, sans-serif",
+                      }}
                       columns={columns}
                       dataSource={data}
                       onChange={onChange}
@@ -537,7 +542,7 @@ const DeveloperDashboard = () => {
                         fontSize: "24px",
                         backgroundColor: "#6356B5",
                         color: "white",
-                        fontFamily: "Comic Sans MS",
+                        fontFamily: "Poppins, sans-serif ",
                       }}
                       type="round"
                     >
@@ -554,7 +559,7 @@ const DeveloperDashboard = () => {
                         fontSize: "24px",
                         backgroundColor: "#315B34 ",
                         color: "white",
-                        fontFamily: "Comic Sans MS",
+                        fontFamily: "Poppins, sans-serif ",
                       }}
                       type="round"
                       onClick={showUpdateProfileModal}
@@ -568,10 +573,15 @@ const DeveloperDashboard = () => {
                       onOk={handleUpdateProfileOk}
                       onCancel={handleUpdateProfileCancel}
                       footer={[
-                        <Button key="back" onClick={handleUpdateProfileCancel}>
+                        <Button
+                          className="mod"
+                          key="back"
+                          onClick={handleUpdateProfileCancel}
+                        >
                           Cancel
                         </Button>,
                         <Button
+                          className="mod"
                           key="submit"
                           type="primary"
                           onClick={handleUpdateProfileOk}
@@ -693,15 +703,15 @@ const DeveloperDashboard = () => {
                       column={1}
                       style={{
                         boxShadow: "  8px 8px 8px -8px gray",
-                        fontSize: "28px",
+                        fontSize: "70%",
                       }}
                     >
                       <Descriptions.Item
                         label="Name"
                         style={{
                           backgroundColor: "#ffffff78",
-                          fontSize: "50%",
-                          fontFamily: "Open Sans",
+                          fontSize: "150%",
+                          fontFamily: "Poppins, sans-serif ",
                         }}
                       >
                         {userDetails.name}
@@ -709,8 +719,8 @@ const DeveloperDashboard = () => {
                       <Descriptions.Item
                         style={{
                           backgroundColor: "#ffffff78",
-                          fontSize: "40%",
-                          fontFamily: "Open Sans",
+                          fontSize: "150%",
+                          fontFamily: "Poppins, sans-serif ",
                         }}
                         label="Email"
                       >
@@ -719,13 +729,14 @@ const DeveloperDashboard = () => {
                       <Descriptions.Item
                         style={{
                           backgroundColor: "#ffffff78",
-                          fontSize: "50%",
-                          fontFamily: "Open Sans",
+                          fontSize: "150%",
+                          fontFamily: "Poppins, sans-serif ",
                         }}
                         label="Password"
                       >
                         ***** &nbsp;&nbsp;&nbsp;
                         <Button
+                          className="update"
                           type="round"
                           size="large"
                           style={{
@@ -744,8 +755,8 @@ const DeveloperDashboard = () => {
                       <Descriptions.Item
                         style={{
                           backgroundColor: "#ffffff78",
-                          fontSize: "50%",
-                          fontFamily: "Open Sans",
+                          fontSize: "150%",
+                          fontFamily: "Poppins, sans-serif ",
                         }}
                         label="Api Subscription type :"
                       >
@@ -754,8 +765,8 @@ const DeveloperDashboard = () => {
                       <Descriptions.Item
                         style={{
                           backgroundColor: "#ffffff78",
-                          fontSize: "50%",
-                          fontFamily: "Open Sans",
+                          fontSize: "150%",
+                          fontFamily: "Poppins, sans-serif ",
                         }}
                         label="Subscription Expiry Date :"
                       >
@@ -780,6 +791,7 @@ const DeveloperDashboard = () => {
       >
         <Row>
           <Col
+            className="headings"
             style={{ color: "black", fontSize: "30px" }}
             xs={{ offset: 8 }}
             md={{ offset: 12 }}
@@ -789,6 +801,7 @@ const DeveloperDashboard = () => {
             <FacebookFilled />
           </Col>
           <Col
+            className="headings"
             xs={{ offset: 1 }}
             sm={{ offset: 7 }}
             md={{ offset: 10 }}
