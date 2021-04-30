@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Layout, Row, Col, Input, Button, Spin, Image } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-
+import { useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "leaflet/dist/leaflet.css";
 import React from "react";
@@ -11,6 +11,7 @@ import { userLogin, getTransaction } from "../service/stateService";
 import { login, setToken, setTransaction } from "../redux/index";
 const { Content } = Layout;
 const DeveloperLogin = () => {
+  const history = useHistory();
   /* ------------Select data population --------------*/
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,10 +46,8 @@ const DeveloperLogin = () => {
 
     dispatch(login(data.data));
     dispatch(setToken(data.token));
-    setTimeout(() => {
-      setLoading(false);
-      return window.location.replace("/dev/home");
-    }, 3000);
+
+    return history.push("/dev/home");
   };
   /* ------------View --------------*/
   return (
@@ -242,7 +241,9 @@ const DeveloperLogin = () => {
             <Row>
               <Col span={24} style={{ paddingLeft: "25%" }}>
                 <img
+                  onClick={() => history.push("/")}
                   style={{
+                    cursor: "pointer",
                     boxShadow: " 8px 8px 8px -8px black",
                     opacity: "0.9",
                   }}

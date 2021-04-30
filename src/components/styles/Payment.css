@@ -68,6 +68,7 @@
   background-color: rgba(0, 0, 0, 0.2);
   margin-top: 2rem;
   margin-bottom: 2rem;
+  box-shadow: 0 9px 30px rgba(52, 31, 97, 2.342) !important;
 }
 
 .PROFESSIONAL .divider {

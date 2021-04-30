@@ -48,20 +48,23 @@ code {
 }
 .ant-layout-sider,
 .ant-menu {
-  background-color: #d3dfd1c4 !important;
-  border: none !important;
+  background-color: rgb(147, 197, 114) !important;
 }
 .ant-menu-item {
   border: none !important;
   font-weight: bold !important;
   color: #695e5e !important;
+  padding: 2% !important;
+  height: 4rem !important;
 }
 .ant-menu-item-selected {
-  padding: 1% !important;
+  padding: 3% !important;
   background-color: white !important;
-
+  border-top-right-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
   border: none !important;
   color: black !important;
+  height: 5rem !important;
 }
 #toTopBtn {
   position: fixed;
@@ -86,7 +89,6 @@ code {
   opacity: 0;
   transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
 }
-
 .cd-top {
   position: fixed;
   bottom: 20px;

@@ -15,6 +15,7 @@ import {
   Skeleton,
 } from "antd";
 import moment from "moment";
+import { useLocation, useHistory } from "react-router-dom";
 import "moment-timezone";
 import "leaflet/dist/leaflet.css";
 import "./styles/DeveloperDashboard.css";
@@ -51,6 +52,7 @@ const { Header, Footer, Content, Sider } = Layout;
 
 const { SubMenu } = Menu;
 const DeveloperDashboard = () => {
+  const history = useHistory();
   /* ------------Select data population --------------*/
   const [menu, setMenu] = useState(1);
   const [limit, setLimit] = useState(0);
@@ -202,7 +204,7 @@ const DeveloperDashboard = () => {
   };
   /* ------------View --------------*/
   return (
-    <Layout style={{ backgroundColor: "black" }}>
+    <Layout style={{ backgroundColor: "white" }}>
       <Header
         style={{
           backgroundColor: "#93C572",
@@ -219,7 +221,7 @@ const DeveloperDashboard = () => {
               className="headings"
               style={{
                 fontFamily: " Akaya Telivigala, cursive ",
-                fontSize: "30px",
+                fontSize: "50px",
               }}
             >
               <a href="/" style={{ color: "white" }}>
@@ -227,23 +229,12 @@ const DeveloperDashboard = () => {
               </a>
             </span>{" "}
           </Col>
-          <Col xs={0}>
-            <span
-              style={{
-                color: "gray",
-                fontFamily: "Open Sans",
-                fontSize: "19px",
-              }}
-            >
-              | Developer Portal
-            </span>
-          </Col>
           <Col classapi="gutter-row" md={12} xs={0}>
             {" "}
             <span
               style={{
                 fontFamily: " Akaya Telivigala, cursive ",
-                fontSize: "30px",
+                fontSize: "40px",
               }}
             >
               Bank and ATM Location Finder{" "}
@@ -262,13 +253,17 @@ const DeveloperDashboard = () => {
           <Col>
             <span
               className="headings"
-              style={{ cursor: "pointer", fontSize: "27px" }}
+              style={{
+                cursor: "pointer",
+                fontSize: "32px",
+                fontFamily: "Poppins,sans-serif",
+              }}
               onClick={async () => {
                 await dispatch(logOut());
                 await dispatch(removeToken());
                 await dispatch(removeTransaction());
                 await dispatch(removePlan());
-                window.location.replace("/dev/login");
+                history.push("/dev/login");
               }}
             >
               {" "}
@@ -277,12 +272,19 @@ const DeveloperDashboard = () => {
           </Col>
         </Row>{" "}
       </Header>
-      <Layout style={{ padding: "2%" }}>
+      <Layout
+        style={{
+          padding: "2%",
+          background:
+            "linear-gradient(to top ,white ,  rgb(147, 197, 114) 100% )",
+        }}
+      >
         <Content
           style={{
             color: "#5a5a5a",
             backgroundColor: "white",
             borderRadius: "25px",
+            boxShadow: " 0 7px 30px rgba(52, 31, 97, 0.342)",
           }}
         >
           {" "}
@@ -345,7 +347,7 @@ const DeveloperDashboard = () => {
                 }}
               >
                 <div
-                  onClick={() => window.location.replace("/api")}
+                  onClick={() => history.push("/api")}
                   style={{
                     paddingTop: "17%",
                     height: "200px",
@@ -414,6 +416,7 @@ const DeveloperDashboard = () => {
                         fontFamily: "Poppins, sans-serif ",
                         fontWeight: "bolder",
                         fontSize: "18px",
+                        backgroundColor: "white !important",
                       }}
                       readOnly
                       value={userDetails.api}
@@ -535,7 +538,7 @@ const DeveloperDashboard = () => {
                   <Col md={5} xs={24}>
                     {" "}
                     <Button
-                      onClick={() => window.location.replace("plan")}
+                      onClick={() => history.push("plan")}
                       style={{
                         height: "70px",
                         width: "290px",
@@ -613,11 +616,9 @@ const DeveloperDashboard = () => {
                         }}
                         required
                         style={{
-                          boxShadow: " 8px 8px 8px -8px black",
                           height: "40px",
                           color: "black",
                           fontSize: "20px",
-                          border: "solid black 2px",
                         }}
                         placeholder="Name"
                       />
@@ -626,11 +627,9 @@ const DeveloperDashboard = () => {
                         value={userDetails.email}
                         readOnly
                         style={{
-                          boxShadow: " 8px 8px 8px -8px black",
                           height: "40px",
                           fontSize: "20px",
                           color: "gray",
-                          border: "solid black 2px",
                         }}
                         placeholder="Email"
                       />
@@ -656,10 +655,8 @@ const DeveloperDashboard = () => {
                             onChange={(e) => setCurrentPassword(e.target.value)}
                             onFocus={() => setPasswordErr(false)}
                             style={{
-                              boxShadow: " 8px 8px 8px -8px black",
                               height: "40px",
                               color: "gray",
-                              border: "solid black 2px",
                             }}
                             placeholder="Password"
                             iconRender={(visible) =>
@@ -676,10 +673,8 @@ const DeveloperDashboard = () => {
                             onChange={(e) => setNewPassword(e.target.value)}
                             onFocus={() => setPasswordErr(false)}
                             style={{
-                              boxShadow: " 8px 8px 8px -8px black",
                               height: "40px",
                               color: "gray",
-                              border: "solid black 2px",
                             }}
                             placeholder="Password"
                             iconRender={(visible) =>

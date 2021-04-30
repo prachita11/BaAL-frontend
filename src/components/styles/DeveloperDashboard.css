@@ -24,9 +24,10 @@
   margin-right: 45% !important;
 }
 .ant-modal-content {
-  background-color: rgb(252, 251, 233) !important;
+  background-color: white !important;
   height: 550px !important;
   width: 800px !important;
+  border-radius: 50px !important;
 }
 @media screen and (max-width: 720px) {
   .ant-modal-content {
@@ -35,9 +36,12 @@
 }
 .ant-modal-header {
   background-color: rgb(147, 197, 114) !important;
+  border-top-right-radius: 50px !important;
+  border-top-left-radius: 50px !important;
 }
 .ant-modal-body {
-  height: 440px !important;
+  height: 424px !important;
+  background-color: white !important;
 }
 .ant-modal-title {
   font-size: 28px !important;
