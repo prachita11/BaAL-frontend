@@ -90,6 +90,9 @@
   .map3 {
     height: 20vh !important;
   }
+  .slick-list {
+    height: 300vh !important;
+  }
   .back {
     background: linear-gradient(
       to bottom,
