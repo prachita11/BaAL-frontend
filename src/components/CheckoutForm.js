@@ -17,8 +17,9 @@ const CheckoutForm = () => {
   const history = useHistory();
   const auth = useSelector((state) => state.auth);
   const plan = useSelector((state) => state.plan);
+  const userDetails = useSelector((state) => state.login);
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(userDetails.email);
   const [phone, setPhone] = useState("");
   const [isError, setIsError] = useState(false);
   const [errMsg, seterrMsg] = useState("");
@@ -233,7 +234,7 @@ const CheckoutForm = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
-                  required
+                  readOnly
                   type="email"
                 />
                 <br></br>
