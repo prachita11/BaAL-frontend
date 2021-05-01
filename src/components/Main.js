@@ -593,9 +593,9 @@ const Main = () => {
             result
           ) : (
             <Carousel
-              className="map2"
               autoplay
               autoplaySpeed={2000}
+              className="map2"
               style={{
                 height: "37vh",
                 boxShadow: "0 7px 30px rgba(52, 31, 97, 0.1)",
@@ -603,6 +603,7 @@ const Main = () => {
             >
               <div>
                 <div
+                  className="map2"
                   style={{
                     color: "white",
                     textAlign: "center",
@@ -628,25 +629,37 @@ const Main = () => {
                     ></Avatar>{" "}
                     100+ Bank info available
                   </h1>
-                  <div
-                    className="headings"
-                    style={{
-                      color: "black",
-                      textAlign: "center",
-                      fontSize: "30px",
-                      fontFamily: "Poppins,sans-serif",
-                      fontWeight: "bolder",
-                      textShadow: "2px 2px white",
-                      height: "29vh",
-                    }}
-                  >
-                    Our database consists information of 100+ Banks and ATMS ,
-                    and counting..
-                  </div>
+                  <Row>
+                    <Col md={8}>
+                      <img
+                        style={{ width: "70%" }}
+                        src={process.env.PUBLIC_URL + "/leading.jpeg"}
+                      ></img>
+                    </Col>
+                    <Col md={16}>
+                      <div
+                        className="titles"
+                        style={{
+                          color: "black",
+                          textAlign: "center",
+                          fontSize: "30px",
+                          fontFamily: "Poppins,sans-serif",
+                          fontWeight: "bolder",
+                          textShadow: "2px 2px white",
+                          height: "29vh",
+                          padding: "4%",
+                        }}
+                      >
+                        Our database consists information of 100+ Banks and ATMS
+                        , and counting..
+                      </div>
+                    </Col>
+                  </Row>
                 </div>
               </div>
               <div>
                 <Row
+                  className="map2"
                   style={{
                     height: "35vh",
                     boxShadow: "inset 0px 0 10px rgba(0, 0, 0, 0.3)",
@@ -689,6 +702,7 @@ const Main = () => {
               </div>
               <div style={{ height: "35vh" }}>
                 <div
+                  className="map2"
                   style={{
                     color: "white",
                     textAlign: "center",
@@ -716,28 +730,40 @@ const Main = () => {
                     ></Avatar>{" "}
                     Accurate locations
                   </h1>
-                  <div
-                    className="headings"
-                    style={{
-                      color: "#171515",
-                      textAlign: "center",
-                      fontSize: "30px",
-                      fontFamily: "Poppins,sans-serif",
-                      fontWeight: "bolder",
-                      textShadow: "4px 4px white",
-                      height: "28vh",
-                      zIndex: "9999",
-                    }}
-                  >
-                    Periodic updates are made in our databases to provide
-                    accurate information about Banks and ATMS and accurate
-                    geocoordinates , to give a hassle free service to the user !{" "}
-                    <br></br>
-                  </div>
+                  <Row>
+                    <Col md={8}>
+                      <img
+                        style={{ width: "70%" }}
+                        src={process.env.PUBLIC_URL + "/accurate.jpeg"}
+                      ></img>
+                    </Col>
+                    <Col md={16}>
+                      <div
+                        className="titles"
+                        style={{
+                          color: "#171515",
+                          textAlign: "center",
+                          fontSize: "25px",
+                          fontFamily: "Poppins,sans-serif",
+                          fontWeight: "bolder",
+                          textShadow: "4px 4px white",
+                          height: "28vh",
+                          zIndex: "9999",
+                          padding: "4%",
+                        }}
+                      >
+                        Periodic updates are made in our databases to provide
+                        accurate information about Banks and ATMS and accurate
+                        geocoordinates , to give a hassle free service to the
+                        user ! <br></br>{" "}
+                      </div>
+                    </Col>
+                  </Row>
                 </div>
               </div>
               <div style={{ height: "35vh" }}>
                 <div
+                  className="map2"
                   style={{
                     color: "white",
                     textAlign: "center",
@@ -760,56 +786,67 @@ const Main = () => {
                     {" "}
                     Free API kit for development
                   </h1>
-                  <div
-                    className="headings"
-                    style={{
-                      color: "black",
-                      textAlign: "center",
-                      fontSize: "30px",
-                      fontFamily: "Poppins,sans-serif",
-                      fontWeight: "bolder",
-                      textShadow: "2px 2px white",
-                      height: "28vh",
-                    }}
-                  >
-                    Developers can get access to free API kit and guide provided
-                    by signing up on our Developer's portal
-                    <br></br>{" "}
-                    <a href="/api">
-                      <Button
-                        className="headings"
-                        type="primary"
-                        shape="round"
+                  <Row>
+                    <Col md={8}>
+                      <img
+                        style={{ width: "70%" }}
+                        src={process.env.PUBLIC_URL + "/portal.jpeg"}
+                      ></img>
+                    </Col>
+                    <Col md={16}>
+                      <div
+                        className="titles"
                         style={{
-                          height: "70px",
-                          fontSize: "25px",
-                          width: "360px",
-                          backgroundColor: "#6f42c1",
+                          color: "black",
+                          textAlign: "center",
+                          fontSize: "30px",
+                          fontFamily: "Poppins,sans-serif",
+                          fontWeight: "bolder",
+                          textShadow: "2px 2px white",
+                          height: "28vh",
+                          padding: "4%",
                         }}
                       >
-                        {" "}
-                        Visit Developer Portal{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="25"
-                          height="25"
-                          fill="currentColor"
-                          className="bi bi-chevron-double-right"
-                          viewBox="0 0 16 16"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
-                          />
-                        </svg>
-                      </Button>
-                      <br></br>
-                    </a>
-                  </div>
+                        Developers can get access to free API kit and guide
+                        provided by signing up on our Developer's portal
+                        <br></br>{" "}
+                        <a href="/api">
+                          <Button
+                            className="headings"
+                            type="primary"
+                            shape="round"
+                            style={{
+                              height: "70px",
+                              fontSize: "25px",
+                              width: "360px",
+                              backgroundColor: "#6f42c1",
+                            }}
+                          >
+                            {" "}
+                            Visit Developer Portal{" "}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="25"
+                              height="25"
+                              fill="currentColor"
+                              className="bi bi-chevron-double-right"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
+                              />
+                              <path
+                                fillRule="evenodd"
+                                d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
+                              />
+                            </svg>
+                          </Button>
+                          <br></br>
+                        </a>
+                      </div>
+                    </Col>
+                  </Row>
                 </div>
               </div>
             </Carousel>
