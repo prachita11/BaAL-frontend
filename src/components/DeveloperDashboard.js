@@ -12,10 +12,9 @@ import {
   Divider,
   Modal,
   Alert,
-  Skeleton,
 } from "antd";
 import moment from "moment";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "moment-timezone";
 import "leaflet/dist/leaflet.css";
 import "./styles/DeveloperDashboard.css";
@@ -31,6 +30,7 @@ import {
   EyeTwoTone,
   EyeInvisibleOutlined,
   LogoutOutlined,
+  CopyOutlined,
 } from "@ant-design/icons";
 import "../App.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -50,11 +50,11 @@ import {
 
 const { Header, Footer, Content, Sider } = Layout;
 
-const { SubMenu } = Menu;
 const DeveloperDashboard = () => {
   const history = useHistory();
   /* ------------Select data population --------------*/
   const [menu, setMenu] = useState(1);
+  const [copied, setCopied] = useState(false);
   const [limit, setLimit] = useState(0);
   const [plan, setPlan] = useState("Free");
   const [expiryDate, setExpiryDate] = useState("N/A");
@@ -324,6 +324,7 @@ const DeveloperDashboard = () => {
                     paddingTop: "17%",
                     height: "200px",
                     cursor: "pointer",
+                    textShadow: "2px 2px black",
                     fontFamily: "Poppins, sans-serif ",
                   }}
                 >
@@ -353,6 +354,7 @@ const DeveloperDashboard = () => {
                     height: "200px",
                     cursor: "pointer",
                     fontFamily: "Poppins, sans-serif ",
+                    textShadow: "2px 2px black",
                   }}
                 >
                   Documentation
@@ -371,6 +373,7 @@ const DeveloperDashboard = () => {
                   textAlign: "center",
                   fontWeight: "bold",
                   borderRadius: "25px",
+                  textShadow: "2px 2px black",
                 }}
               >
                 <div
@@ -410,7 +413,7 @@ const DeveloperDashboard = () => {
                       API Key :
                     </span>
                   </Col>
-                  <Col md={{ span: 8, offset: 1 }} xs={24}>
+                  <Col md={{ span: 6, offset: 1 }} xs={24}>
                     <Input
                       style={{
                         fontFamily: "Poppins, sans-serif ",
@@ -422,6 +425,25 @@ const DeveloperDashboard = () => {
                       value={userDetails.api}
                     ></Input>{" "}
                     <br></br> <br></br> <br></br>
+                  </Col>
+                  <Col xs={0}>
+                    {copied && (
+                      <Alert
+                        message="Copied to clipboard !"
+                        type="success"
+                        showIcon
+                      />
+                    )}
+
+                    <CopyOutlined
+                      onClick={() => {
+                        navigator.clipboard.writeText(userDetails.api);
+                        setCopied(true);
+                        setTimeout(() => {
+                          setCopied(false);
+                        }, 1000);
+                      }}
+                    />
                   </Col>
                   <Col md={{ offset: 5 }}>
                     <span
@@ -780,7 +802,7 @@ const DeveloperDashboard = () => {
           </Row>
         </Content>
       </Layout>
-      )
+
       <Footer
         style={{ backgroundColor: "#93C572", height: "150px", color: "white" }}
       >

@@ -23,10 +23,9 @@ const SuccessPage = () => {
         <Content
           style={{
             color: "#5a5a5a",
-            boxShadow: "    6px 6px 8px 8px gray",
             height: "100vh",
             background:
-              "linear-gradient(to right bottom,  rgb(147, 197, 114) 60% ,rgb(255 252 202 / 41%)  50%)",
+              "linear-gradient(to right bottom,  rgb(147, 197, 114) 60% ,whitesmoke  50%)",
           }}
         >
           <Row
@@ -42,19 +41,30 @@ const SuccessPage = () => {
                 backgroundColor: "white",
                 padding: "3%",
                 height: "480px",
-                border: "solid gray 2px",
+                borderRadius: "25px",
+                boxShadow: "0 7px 30px rgba(52, 31, 97, 1.1)",
+                fontFamily: "Poppins,sans-serif",
               }}
             >
               <Result
+                key={1}
                 status="success"
                 title="Successfully subscribed"
                 extra={[
-                  <span style={{ color: "green", fontWeight: "bolder" }}>
+                  <span
+                    key={2}
+                    style={{
+                      color: "green",
+                      fontWeight: "bolder",
+                      fontFamily: "Poppins,sans-serif",
+                    }}
+                  >
                     {" "}
                     Redirecting to Dashboard, please wait... <br></br>
                   </span>,
                   <Button
                     type="primary"
+                    style={{ fontFamily: "Poppins,sans-serif" }}
                     key="console"
                     onClick={() => history.push("home")}
                   >

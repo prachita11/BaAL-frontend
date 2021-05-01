@@ -54,6 +54,9 @@
   .ant-descriptions-item-label {
     font-size: 90% !important;
   }
+  .ant-modal {
+    margin-right: 1% !important;
+  }
   .men:hover,
   .men:focus {
     transform: none !important;
