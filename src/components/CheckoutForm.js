@@ -204,6 +204,7 @@ const CheckoutForm = () => {
                 padding: "3%",
                 height: "40%",
                 boxShadow: " 0 7px 30px rgba(52, 31, 97, .5)",
+                borderRadius: "25px",
               }}
             >
               {isError && (

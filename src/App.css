@@ -12,7 +12,16 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.slick-list {
+  height: 34vh !important;
+}
+.selected:hover,
+.selected:focus {
+  transform: scale(1.1) !important;
+  color: black !important;
+  padding-left: 13% !important;
+  background-color: rgb(183 231 150) !important;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -65,6 +74,22 @@
 }
 
 @media screen and (max-width: 720px) {
+  .search {
+    height: 78vh !important;
+  }
+
+  .map1 {
+    height: 30vh !important;
+  }
+  .map2 {
+    height: 70vh !important;
+  }
+  .map {
+    height: 110vh !important;
+  }
+  .map3 {
+    height: 20vh !important;
+  }
   .back {
     background: linear-gradient(
       to bottom,
@@ -77,6 +102,7 @@
     padding-right: 1% !important;
   }
   .check {
+    height: 116vh !important;
     background: linear-gradient(
       to top,
       whitesmoke 50%,
