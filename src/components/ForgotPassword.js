@@ -10,6 +10,7 @@ const ForgotPassword = () => {
   /* ------------Select data population --------------*/
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
+  const [style, setStyle] = useState({ color: "red" });
   const [errMsg, setErrMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -28,12 +29,19 @@ const ForgotPassword = () => {
     let data = await resetPass({ email: email });
     console.log(data);
     setEmail("");
-
-    // if (data.error == true) {
-    //   setLoading(false);
-    //   setError(true);
-    //   return;
-    // }
+    setLoading(false);
+    if (data.error == true) {
+      setStyle({ color: "red" });
+      setErrMsg("Something went wron , please try again!");
+      setError(true);
+      return;
+    } else {
+      setStyle({ color: "green" });
+      setErrMsg(
+        `You will recieve a mail on ${email} with reset password instructions `
+      );
+      setError(true);
+    }
   };
   /* ------------View --------------*/
   return (
@@ -52,7 +60,7 @@ const ForgotPassword = () => {
             style={{
               marginTop: "10%",
               backgroundColor: "white",
-              height: "60%",
+              height: "72%",
               borderRadius: "25px",
               boxShadow: " 0 3px 12px rgb(52 31 97 / 89%)",
             }}
@@ -87,15 +95,7 @@ const ForgotPassword = () => {
                 }}
               >
                 {" "}
-                {error && (
-                  <span
-                    style={{
-                      color: "red",
-                    }}
-                  >
-                    {errMsg}
-                  </span>
-                )}
+                {error && <span style={style}>{errMsg}</span>}
               </Col>
 
               <Col
