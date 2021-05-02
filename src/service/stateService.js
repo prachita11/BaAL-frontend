@@ -171,7 +171,6 @@ const getLimit = async (api) => {
 };
 
 const updatePass = async (api) => {
-  console.log(api);
   try {
     const data = await axios
       .post(`${SERVER}api/changePass`, api, {
@@ -189,7 +188,6 @@ const updatePass = async (api) => {
 };
 
 const updatePlan = async (api) => {
-  console.log(api);
   try {
     const data = await axios
       .post(`${SERVER}updatePlan`, api, {
@@ -213,7 +211,6 @@ const updatePlan = async (api) => {
 };
 
 const resetPass = async (api) => {
-  console.log(api);
   try {
     const data = await axios
       .post(`${SERVER}resetPass`, {

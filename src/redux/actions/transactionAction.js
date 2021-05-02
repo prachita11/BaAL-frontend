@@ -4,7 +4,6 @@ import {
 } from "./actionTypes/transactionTypes";
 
 export const setTransaction = (value) => {
-  console.log(value);
   return {
     type: SHOW_TRANSACTION,
     values: value,

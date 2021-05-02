@@ -59,7 +59,6 @@ const CheckoutForm = () => {
     // Block native form submission.
     event.preventDefault();
     if (email == "" || name == "" || phone == "") {
-      console.log(email, name, phone);
       setIsError(true);
       seterrMsg("Please fill in the details !");
       setLoading(false);
@@ -108,7 +107,6 @@ const CheckoutForm = () => {
         name: name,
         plan: plan,
       });
-      console.log(res);
       // eslint-disable-next-line camelcase
       const { client_secret, status, error } = res.data;
       if (error) {
@@ -117,7 +115,6 @@ const CheckoutForm = () => {
       if (status === "requires_action") {
         stripe.confirmCardPayment(client_secret).then(async function (result) {
           if (result.error) {
-            console.log(result.error);
             return history.push("failed?error=" + result.error);
             // Display error message in your UI.
             // The card was declined (i.e. insufficient funds, card has expired, etc)

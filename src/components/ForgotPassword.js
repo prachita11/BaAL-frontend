@@ -27,7 +27,6 @@ const ForgotPassword = () => {
       return;
     }
     let data = await resetPass({ email: email });
-    console.log(data);
     setEmail("");
     setLoading(false);
     if (data.error == true) {
