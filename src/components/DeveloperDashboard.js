@@ -498,7 +498,10 @@ const DeveloperDashboard = () => {
                         </Button>{" "}
                         <br></br> <br></br> <br></br>
                       </Col>
-                      <Col md={11} xs={{ span: 24, order: 5 }}>
+                      <Col
+                        md={{ span: 11, order: 4 }}
+                        xs={{ span: 24, order: 5 }}
+                      >
                         <span
                           className="titles"
                           style={{
@@ -513,7 +516,7 @@ const DeveloperDashboard = () => {
                         </span>
                       </Col>
                       <Col
-                        md={{ span: 8, offset: 5 }}
+                        md={{ span: 8, offset: 3 }}
                         xs={{ span: 24, order: 4 }}
                       >
                         <span
