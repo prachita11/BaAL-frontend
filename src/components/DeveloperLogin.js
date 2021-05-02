@@ -170,6 +170,9 @@ const DeveloperLogin = () => {
                   }}
                 >
                   <Input.Password
+                    onKeyPress={(e) =>
+                      e.key === "Enter" ? handleLogin() : null
+                    }
                     className="in"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}

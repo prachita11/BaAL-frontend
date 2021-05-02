@@ -193,6 +193,7 @@ const DeveloperRegister = () => {
                 }}
               >
                 <Input
+                  onKeyPress={(e) => (e.key === "Enter" ? onSubscribe() : null)}
                   required
                   onFocus={() => setError(false)}
                   value={password}
