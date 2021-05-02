@@ -1,18 +1,15 @@
-import { useState } from "react";
 import { Result } from "antd";
 import { Layout, Button, Row, Col } from "antd";
 import { useEffect } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "moment-timezone";
 import "leaflet/dist/leaflet.css";
 import "./styles/DeveloperDashboard.css";
 import React from "react";
 import "../App.css";
-import Logo from "./logo.jpg";
 const { Content } = Layout;
 
 const SuccessPage = () => {
-  let location = useLocation();
   let history = useHistory();
   useEffect(() => {
     setTimeout(() => history.push("home"), 3000);

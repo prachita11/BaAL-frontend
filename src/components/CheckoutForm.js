@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout, Button, Row, Col, Input, Spin, Image } from "antd";
-import axios from "axios";
-import { useLocation, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { updatePlan, subscribe } from "../service/stateService";
 import "moment-timezone";
 import "leaflet/dist/leaflet.css";
+import Load from "./load.svg";
 import "./styles/DeveloperDashboard.css";
 import React from "react";
 import "../App.css";
 import Logo from "./logo.jpg";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import Avatar from "antd/lib/avatar/avatar";
 const { Content } = Layout;
 
 const CheckoutForm = () => {
   const history = useHistory();
+  const [showLoader, setshowLoader] = useState(true);
   const auth = useSelector((state) => state.auth);
   const plan = useSelector((state) => state.plan);
   const userDetails = useSelector((state) => state.login);
@@ -26,6 +28,9 @@ const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  useEffect(() => {
+    setTimeout(() => setshowLoader(false), 2000);
+  }, []);
   const CARD_ELEMENT_OPTIONS = {
     style: {
       base: {
@@ -54,6 +59,7 @@ const CheckoutForm = () => {
     // Block native form submission.
     event.preventDefault();
     if (email == "" || name == "" || phone == "") {
+      console.log(email, name, phone);
       setIsError(true);
       seterrMsg("Please fill in the details !");
       setLoading(false);
@@ -150,147 +156,160 @@ const CheckoutForm = () => {
 
   return (
     <Layout>
-      <Layout className="check" style={{ height: "100vh" }}>
-        <Content
-          className="check"
-          style={{
-            color: "#5a5a5a",
-            boxShadow: "    6px 6px 8px 8px gray",
-            height: "100vh",
-            background:
-              "linear-gradient(to bottom ,  whitesmoke  50%,rgb(147, 197, 114) 50% )",
-          }}
-        >
-          {" "}
-          <Row
+      {" "}
+      {showLoader ? (
+        <Row style={{ height: "100vh" }}>
+          <Col
+            style={{ paddingTop: "15%" }}
+            md={{ span: 14, offset: 10 }}
+            xs={{ span: 10, offset: 9 }}
+          >
+            <img className="loader" src={Load}></img>
+          </Col>
+        </Row>
+      ) : (
+        <Layout className="check" style={{ height: "100vh" }}>
+          <Content
+            className="check"
             style={{
-              paddingTop: "15%",
-              paddingLeft: "10%",
-              paddingRight: "10%",
+              color: "#5a5a5a",
+              boxShadow: "    6px 6px 8px 8px gray",
+              height: "100vh",
+              background:
+                "linear-gradient(to bottom ,  whitesmoke  50%,rgb(147, 197, 114) 50% )",
             }}
           >
-            <Col md={13} xs={24}>
-              <img
-                src={Logo}
-                style={{ boxShadow: " 0 7px 30px rgba(52, 31, 97, .5)" }}
-                width={"60%"}
-              ></img>
-              <br></br>
-              <span
-                style={{
-                  fontSize: "90px",
-                  paddingLeft: "5%",
-                  color: "white",
-                  fontFamily: "Akaya Telivigala, cursive",
-                }}
-              >
-                BaAL
-              </span>
-              <span
-                style={{
-                  fontSize: "1.75rem",
-                  color: "gray",
-                  fontFamily: "Poppins, sans-serif",
-                }}
-              >
-                | Developers Portal{" "}
-              </span>
-            </Col>
-
-            <Col
-              md={{ span: 11 }}
-              xs={{ span: 24 }}
+            {" "}
+            <Row
               style={{
-                backgroundColor: "white",
-                padding: "3%",
-                height: "40%",
-                boxShadow: " 0 7px 30px rgba(52, 31, 97, .5)",
-                borderRadius: "25px",
+                paddingTop: "15%",
+                paddingLeft: "10%",
+                paddingRight: "10%",
               }}
             >
-              {isError && (
-                <Col span={24}>
-                  <span style={{ color: "red" }}> {errMsg}</span>
-                </Col>
-              )}
-
-              <Col span={24}>
-                <Input
-                  style={{ fontFamily: "Poppins , sans-serif" }}
-                  onFocus={() => setIsError(false)}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Name"
-                  required
-                />
+              <Col md={13} xs={24}>
+                <img
+                  src={process.env.PUBLIC_URL + "/checkout.jpeg"}
+                  width={"60%"}
+                ></img>
                 <br></br>
-                <br></br>
-              </Col>
-
-              <Col span={24}>
-                <Input
-                  style={{ fontFamily: "Poppins , sans-serif" }}
-                  onFocus={() => setIsError(false)}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email"
-                  readOnly
-                  type="email"
-                />
-                <br></br>
-                <br></br>
-              </Col>
-              <Col span={24}>
-                <Input
-                  style={{ fontFamily: "Poppins , sans-serif" }}
-                  onFocus={() => setIsError(false)}
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Phone Number"
-                  required
-                  type="number"
-                />
-                <br></br>
-                <br></br>
-              </Col>
-              <Col span={24}>
+                <Avatar src={Logo} size={125}></Avatar>
                 <span
                   style={{
-                    fontWeight: "bold",
-                    fontFamily: "Poppins , sans-serif",
+                    fontSize: "90px",
+                    paddingLeft: "5%",
+                    color: "white",
+                    fontFamily: "Akaya Telivigala, cursive",
                   }}
                 >
-                  Subscription fee : {plan.price}
+                  BaAL
                 </span>
-                <br></br>
-                <br></br>
-              </Col>
-              <Col span={24} style={{ backgroundColor: "white" }}>
-                <CardElement options={CARD_ELEMENT_OPTIONS} />
-                <br></br>
-                <br></br>
-              </Col>
-              <Col span={24}>
-                <Button
-                  type="primary"
-                  onClick={(e) => handleSubmit(e)}
-                  block
-                  disabled={!stripe}
+                <span
                   style={{
-                    fontSize: "17px",
-                    backgroundColor: "rgb(147, 197, 114)",
-                    border: "rgb(147, 197, 114)",
-                    fontFamily: "Poppins , sans-serif",
-                    fontWeight: "bold",
+                    fontSize: "1.75rem",
+                    color: "gray",
+                    fontFamily: "Poppins, sans-serif",
                   }}
                 >
-                  {loading && <Spin size={"large"}></Spin>} Pay
-                </Button>
+                  | Developers Portal{" "}
+                </span>
               </Col>
-            </Col>
-          </Row>
-        </Content>
-      </Layout>
+
+              <Col
+                md={{ span: 11 }}
+                xs={{ span: 24 }}
+                style={{
+                  backgroundColor: "white",
+                  padding: "3%",
+                  height: "40%",
+                  boxShadow: " 0 7px 30px rgba(52, 31, 97, .5)",
+                  borderRadius: "25px",
+                }}
+              >
+                {isError && (
+                  <Col span={24}>
+                    <span style={{ color: "red" }}> {errMsg}</span>
+                  </Col>
+                )}
+
+                <Col span={24}>
+                  <Input
+                    style={{ fontFamily: "Poppins , sans-serif" }}
+                    onFocus={() => setIsError(false)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Name"
+                    required
+                  />
+                  <br></br>
+                  <br></br>
+                </Col>
+
+                <Col span={24}>
+                  <Input
+                    style={{ fontFamily: "Poppins , sans-serif" }}
+                    onFocus={() => setIsError(false)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                    readOnly
+                    type="email"
+                  />
+                  <br></br>
+                  <br></br>
+                </Col>
+                <Col span={24}>
+                  <Input
+                    style={{ fontFamily: "Poppins , sans-serif" }}
+                    onFocus={() => setIsError(false)}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Phone Number"
+                    required
+                    type="number"
+                  />
+                  <br></br>
+                  <br></br>
+                </Col>
+                <Col span={24}>
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontFamily: "Poppins , sans-serif",
+                    }}
+                  >
+                    Subscription fee : {plan.price}
+                  </span>
+                  <br></br>
+                  <br></br>
+                </Col>
+                <Col span={24} style={{ backgroundColor: "white" }}>
+                  <CardElement options={CARD_ELEMENT_OPTIONS} />
+                  <br></br>
+                  <br></br>
+                </Col>
+                <Col span={24}>
+                  <Button
+                    type="primary"
+                    onClick={(e) => handleSubmit(e)}
+                    block
+                    disabled={!stripe}
+                    style={{
+                      fontSize: "17px",
+                      backgroundColor: "rgb(147, 197, 114)",
+                      border: "rgb(147, 197, 114)",
+                      fontFamily: "Poppins , sans-serif",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {loading && <Spin size={"large"}></Spin>} Pay
+                  </Button>
+                </Col>
+              </Col>
+            </Row>
+          </Content>
+        </Layout>
+      )}
     </Layout>
   );
 };

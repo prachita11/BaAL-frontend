@@ -75,9 +75,12 @@
 
 @media screen and (max-width: 720px) {
   .search {
-    height: 78vh !important;
+    height: 85vh !important;
   }
-
+  .head {
+    padding-left: 0 !important;
+    font-size: 24px !important;
+  }
   .map1 {
     height: 30vh !important;
   }
@@ -91,7 +94,7 @@
     height: 20vh !important;
   }
   .slick-list {
-    height: 300vh !important;
+    height: 50vh !important;
   }
   .back {
     background: linear-gradient(

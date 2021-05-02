@@ -19,6 +19,7 @@ import "moment-timezone";
 import "leaflet/dist/leaflet.css";
 import "./styles/DeveloperDashboard.css";
 import React from "react";
+import Load from "./load.svg";
 import Logo from "./logo.jpg";
 import {
   GithubFilled,
@@ -53,6 +54,7 @@ const { Header, Footer, Content, Sider } = Layout;
 const DeveloperDashboard = () => {
   const history = useHistory();
   /* ------------Select data population --------------*/
+  const [showLoader, setshowLoader] = useState(true);
   const [menu, setMenu] = useState(1);
   const [copied, setCopied] = useState(false);
   const [limit, setLimit] = useState(0);
@@ -79,6 +81,10 @@ const DeveloperDashboard = () => {
     setIsProfileModalVisible(true);
     setMsg(false);
   };
+
+  useEffect(() => {
+    setTimeout(() => setshowLoader(false), 2000);
+  }, []);
 
   const handleUpdateProfileOk = async () => {
     let data = {
@@ -205,633 +211,647 @@ const DeveloperDashboard = () => {
   /* ------------View --------------*/
   return (
     <Layout style={{ backgroundColor: "white" }}>
-      <Header
-        style={{
-          backgroundColor: "#93C572",
-          color: "white",
-          fontWeight: "bold",
-        }}
-      >
-        {" "}
-        <Row classapi="logo" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          {" "}
-          <Col md={8} xs={12}>
-            <Avatar size={60} src={Logo} />{" "}
-            <span
-              className="headings"
-              style={{
-                fontFamily: " Akaya Telivigala, cursive ",
-                fontSize: "50px",
-              }}
-            >
-              <a href="/" style={{ color: "white" }}>
-                BaAL
-              </a>
-            </span>{" "}
-          </Col>
-          <Col classapi="gutter-row" md={12} xs={0}>
-            {" "}
-            <span
-              style={{
-                fontFamily: " Akaya Telivigala, cursive ",
-                fontSize: "40px",
-              }}
-            >
-              Bank and ATM Location Finder{" "}
-            </span>
-            <span
-              style={{
-                color: "#5d5858",
-                fontFamily: "Open Sans",
-                fontSize: "19px",
-              }}
-            >
-              | API documentation
-            </span>
-            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-          </Col>
-          <Col>
-            <span
-              className="headings"
-              style={{
-                cursor: "pointer",
-                fontSize: "32px",
-                fontFamily: "Poppins,sans-serif",
-              }}
-              onClick={async () => {
-                await dispatch(logOut());
-                await dispatch(removeToken());
-                await dispatch(removeTransaction());
-                await dispatch(removePlan());
-                history.push("/dev/login");
-              }}
-            >
-              {" "}
-              Logout <LogoutOutlined />
-            </span>
-          </Col>
-        </Row>{" "}
-      </Header>
-      <Layout
-        style={{
-          padding: "2%",
-          background:
-            "linear-gradient(to top ,white ,  rgb(147, 197, 114) 100% )",
-        }}
-      >
-        <Content
-          style={{
-            color: "#5a5a5a",
-            backgroundColor: "white",
-            borderRadius: "25px",
-            boxShadow: " 0 7px 30px rgba(52, 31, 97, 0.342)",
-          }}
-        >
-          {" "}
-          <Row
-            style={{
-              color: "gray",
-              fontFamily: "Amaranth",
-            }}
-          >
-            <Col
-              className="headings"
-              md={{ offset: 10 }}
-              xs={{ offset: 5 }}
-              style={{ padding: "10px", fontSize: "30px" }}
-            >
-              Welcome {userDetails.name} !
-            </Col>
-          </Row>
-          <Row>
-            <Col md={{ offset: 4 }} style={{ paddingLeft: "1.7%" }}>
-              <div
-                className="men"
-                style={{
-                  height: "150px",
-                  width: "350px",
-                  backgroundColor: "#F3C363",
-                  color: "white",
-                  fontSize: "27px",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  borderRadius: "25px",
-                }}
-              >
-                <div
-                  onClick={() => setMenu(1)}
-                  style={{
-                    paddingTop: "17%",
-                    height: "200px",
-                    cursor: "pointer",
-                    textShadow: "2px 2px black",
-                    fontFamily: "Poppins, sans-serif ",
-                  }}
-                >
-                  {" "}
-                  Home
-                </div>
-              </div>
-            </Col>
-            <Col style={{ paddingLeft: "1.7%" }}>
-              <div
-                className="men"
-                style={{
-                  height: "150px",
-                  width: "350px",
-                  backgroundColor: "#C2D9D2",
-                  color: "white",
-                  fontSize: "27px",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  borderRadius: "25px",
-                }}
-              >
-                <div
-                  onClick={() => history.push("/api")}
-                  style={{
-                    paddingTop: "17%",
-                    height: "200px",
-                    cursor: "pointer",
-                    fontFamily: "Poppins, sans-serif ",
-                    textShadow: "2px 2px black",
-                  }}
-                >
-                  Documentation
-                </div>
-              </div>
-            </Col>
-            <Col style={{ paddingLeft: "1.7%" }}>
-              <div
-                className="men"
-                style={{
-                  height: "150px",
-                  width: "350px",
-                  backgroundColor: "#765259",
-                  color: "white",
-                  fontSize: "27px",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  borderRadius: "25px",
-                  textShadow: "2px 2px black",
-                }}
-              >
-                <div
-                  onClick={() => setMenu(3)}
-                  style={{
-                    paddingTop: "17%",
-                    cursor: "pointer",
-                    fontFamily: "Poppins, sans-serif ",
-                  }}
-                >
-                  Profile
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col
-              span={24}
-              style={{
-                padding: "5%",
-              }}
-            >
-              {menu == 1 ? (
-                <Row>
-                  <Col>
-                    <span
-                      className="titles"
-                      style={{
-                        fontFamily: "Poppins, sans-serif ",
-                        fontWeight: "bold",
-                        fontSize: "25px",
-                        color: "#5d8b46",
-                      }}
-                    >
-                      {" "}
-                      <BuildOutlined style={{ color: "gray" }} />
-                      API Key :
-                    </span>
-                  </Col>
-                  <Col md={{ span: 6, offset: 1 }} xs={24}>
-                    <Input
-                      style={{
-                        fontFamily: "Poppins, sans-serif ",
-                        fontWeight: "bolder",
-                        fontSize: "18px",
-                        backgroundColor: "white !important",
-                      }}
-                      readOnly
-                      value={userDetails.api}
-                    ></Input>{" "}
-                    <br></br> <br></br> <br></br>
-                  </Col>
-                  <Col xs={0}>
-                    {copied && (
-                      <Alert
-                        message="Copied to clipboard !"
-                        type="success"
-                        showIcon
-                      />
-                    )}
-
-                    <CopyOutlined
-                      onClick={() => {
-                        navigator.clipboard.writeText(userDetails.api);
-                        setCopied(true);
-                        setTimeout(() => {
-                          setCopied(false);
-                        }, 1000);
-                      }}
-                    />
-                  </Col>
-                  <Col md={{ offset: 5 }}>
-                    <span
-                      className="titles"
-                      style={{
-                        fontFamily: "Poppins, sans-serif ",
-                        fontWeight: "bolder",
-                        fontSize: "25px",
-                        color: "#5d8b46",
-                      }}
-                    >
-                      {" "}
-                      <BuildOutlined style={{ color: "gray" }} />
-                      Postman API :
-                    </span>{" "}
-                    <Button
-                      onClick={downloadAPI}
-                      type="round"
-                      style={{
-                        height: "50%",
-                        width: "100%",
-                        fontSize: "100%",
-                        backgroundColor: "rgba(211, 84, 94, 0.99)",
-                        color: "white",
-                        fontFamily: "Poppins, sans-serif ",
-                        boxShadow: " 0 7px 10px rgba(52, 31, 97, 0.342) ",
-                      }}
-                    >
-                      {" "}
-                      <DownloadOutlined /> Download API Collection
-                    </Button>{" "}
-                    <br></br> <br></br> <br></br>
-                  </Col>
-                  <Col md={11} xs={0}>
-                    <span
-                      className="titles"
-                      style={{
-                        fontFamily: "Poppins, sans-serif ",
-                        fontWeight: "bolder",
-                        fontSize: "25px",
-                        color: "#5d8b46",
-                      }}
-                    >
-                      <BuildOutlined style={{ color: "gray" }} />
-                      API usage :
-                    </span>
-                  </Col>
-                  <Col md={{ span: 8, offset: 5 }} xs={24}>
-                    <span
-                      className="titles"
-                      style={{
-                        fontFamily: "Poppins, sans-serif ",
-                        fontWeight: "bolder",
-                        fontSize: "25px",
-                        color: "#5d8b46",
-                      }}
-                    >
-                      <BuildOutlined style={{ color: "gray" }} />
-                      API hits available :{" "}
-                      <span
-                        className="titles"
-                        title="Available api hits"
-                        style={{
-                          color: "#315B34",
-                          padding: "2%",
-                          fontSize: "100%",
-                          fontWeight: "bold",
-                          textDecoration: "underline",
-                        }}
-                      >
-                        {" "}
-                        {limit}
-                      </span>
-                      &nbsp;
-                      {limit == 0 && (
-                        <a style={{ fontSize: "14px" }} href="/dev/plan">
-                          {" "}
-                          Upgrade Subscription
-                        </a>
-                      )}
-                    </span>{" "}
-                    <br></br> <br></br> <br></br>
-                  </Col>
-                  <Col md={0} xs={24}>
-                    <span
-                      className="titles"
-                      style={{
-                        fontFamily: "Poppins, sans-serif ",
-                        fontWeight: "bolder",
-                        fontSize: "25px",
-                        color: "#5d8b46",
-                      }}
-                    >
-                      <BuildOutlined style={{ color: "gray" }} />
-                      API usage :
-                    </span>
-                  </Col>
-                  <br></br> <br></br> <br></br>
-                  <Col md={24}>
-                    <Table
-                      respo
-                      style={{
-                        fontSize: "70%",
-                        fontFamily: "Poppins, sans-serif",
-                      }}
-                      columns={columns}
-                      dataSource={data}
-                      onChange={onChange}
-                    />
-                  </Col>
-                </Row>
-              ) : menu == 2 ? null : (
-                <Row>
-                  <Col md={5} xs={24}>
-                    {" "}
-                    <Button
-                      onClick={() => history.push("plan")}
-                      style={{
-                        height: "70px",
-                        width: "290px",
-                        fontSize: "24px",
-                        backgroundColor: "#6356B5",
-                        color: "white",
-                        fontFamily: "Poppins, sans-serif ",
-                      }}
-                      type="round"
-                    >
-                      {" "}
-                      Change API Plan
-                    </Button>{" "}
-                  </Col>
-                  <Col span={5}>
-                    {" "}
-                    <Button
-                      style={{
-                        height: "70px",
-                        width: "290px",
-                        fontSize: "24px",
-                        backgroundColor: "#315B34 ",
-                        color: "white",
-                        fontFamily: "Poppins, sans-serif ",
-                      }}
-                      type="round"
-                      onClick={showUpdateProfileModal}
-                    >
-                      {" "}
-                      Update Profile
-                    </Button>{" "}
-                    <Modal
-                      title="Update Profile"
-                      visible={IsProfileModalVisible}
-                      onOk={handleUpdateProfileOk}
-                      onCancel={handleUpdateProfileCancel}
-                      footer={[
-                        <Button
-                          className="mod"
-                          key="back"
-                          onClick={handleUpdateProfileCancel}
-                        >
-                          Cancel
-                        </Button>,
-                        <Button
-                          className="mod"
-                          key="submit"
-                          type="primary"
-                          onClick={handleUpdateProfileOk}
-                        >
-                          Update
-                        </Button>,
-                      ]}
-                    >
-                      {msg && (
-                        <Alert
-                          message={updatedText}
-                          type={updatedMsg}
-                          showIcon
-                        />
-                      )}
-                      {error && (
-                        <span style={{ color: "red", fontSize: "18px" }}>
-                          {" "}
-                          Invalid input !
-                        </span>
-                      )}
-                      <br></br>
-                      Name :
-                      <Input
-                        onFocus={() => setError(false)}
-                        value={name}
-                        onChange={(e) => {
-                          setName(e.target.value);
-                        }}
-                        required
-                        style={{
-                          height: "40px",
-                          color: "black",
-                          fontSize: "20px",
-                        }}
-                        placeholder="Name"
-                      />
-                      Email:
-                      <Input
-                        value={userDetails.email}
-                        readOnly
-                        style={{
-                          height: "40px",
-                          fontSize: "20px",
-                          color: "gray",
-                        }}
-                        placeholder="Email"
-                      />
-                      <Divider
-                        onClick={() => setChangePassword(!changePassword)}
-                        type="horizontal"
-                      >
-                        {" "}
-                        <EditOutlined />
-                        Change Password
-                      </Divider>
-                      {changePassword && (
-                        <div>
-                          {passwordErr && (
-                            <span style={{ color: "red", fontSize: "18px" }}>
-                              {passwordErrMsg}
-                            </span>
-                          )}
-                          <br></br>
-                          Enter new Password:
-                          <Input.Password
-                            value={currentPassword}
-                            onChange={(e) => setCurrentPassword(e.target.value)}
-                            onFocus={() => setPasswordErr(false)}
-                            style={{
-                              height: "40px",
-                              color: "gray",
-                            }}
-                            placeholder="Password"
-                            iconRender={(visible) =>
-                              visible ? (
-                                <EyeTwoTone />
-                              ) : (
-                                <EyeInvisibleOutlined />
-                              )
-                            }
-                          />
-                          Re-enter Password:
-                          <Input.Password
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            onFocus={() => setPasswordErr(false)}
-                            style={{
-                              height: "40px",
-                              color: "gray",
-                            }}
-                            placeholder="Password"
-                            iconRender={(visible) =>
-                              visible ? (
-                                <EyeTwoTone />
-                              ) : (
-                                <EyeInvisibleOutlined />
-                              )
-                            }
-                          />
-                        </div>
-                      )}
-                    </Modal>
-                  </Col>
-                  <Divider></Divider>
-                  <Col span={24}>
-                    {" "}
-                    <Descriptions
-                      title="Account Details"
-                      bordered
-                      column={1}
-                      style={{
-                        boxShadow: "  8px 8px 8px -8px gray",
-                        fontSize: "70%",
-                      }}
-                    >
-                      <Descriptions.Item
-                        label="Name"
-                        style={{
-                          backgroundColor: "#ffffff78",
-                          fontSize: "150%",
-                          fontFamily: "Poppins, sans-serif ",
-                        }}
-                      >
-                        {userDetails.name}
-                      </Descriptions.Item>
-                      <Descriptions.Item
-                        style={{
-                          backgroundColor: "#ffffff78",
-                          fontSize: "150%",
-                          fontFamily: "Poppins, sans-serif ",
-                        }}
-                        label="Email"
-                      >
-                        {userDetails.email}
-                      </Descriptions.Item>
-                      <Descriptions.Item
-                        style={{
-                          backgroundColor: "#ffffff78",
-                          fontSize: "150%",
-                          fontFamily: "Poppins, sans-serif ",
-                        }}
-                        label="Password"
-                      >
-                        ***** &nbsp;&nbsp;&nbsp;
-                        <Button
-                          className="update"
-                          type="round"
-                          size="large"
-                          style={{
-                            backgroundColor: "#1e8aff",
-                            color: "white",
-                          }}
-                          onClick={() => {
-                            setChangePassword(true);
-                            showUpdateProfileModal();
-                          }}
-                        >
-                          {" "}
-                          Update password{" "}
-                        </Button>
-                      </Descriptions.Item>
-                      <Descriptions.Item
-                        style={{
-                          backgroundColor: "#ffffff78",
-                          fontSize: "150%",
-                          fontFamily: "Poppins, sans-serif ",
-                        }}
-                        label="Api Subscription type :"
-                      >
-                        {plan}
-                      </Descriptions.Item>
-                      <Descriptions.Item
-                        style={{
-                          backgroundColor: "#ffffff78",
-                          fontSize: "150%",
-                          fontFamily: "Poppins, sans-serif ",
-                        }}
-                        label="Subscription Expiry Date :"
-                      >
-                        {expiryDate == "null"
-                          ? "N/A"
-                          : moment
-                              .utc(new Date(expiryDate).toISOString())
-
-                              .format("dddd, MMMM D,YYYY")}
-                      </Descriptions.Item>
-                    </Descriptions>
-                  </Col>
-                </Row>
-              )}
-            </Col>
-          </Row>
-        </Content>
-      </Layout>
-
-      <Footer
-        style={{ backgroundColor: "#93C572", height: "150px", color: "white" }}
-      >
-        <Row>
+      {showLoader ? (
+        <Row style={{ height: "100vh" }}>
           <Col
-            className="headings"
-            style={{ color: "black", fontSize: "30px" }}
-            xs={{ offset: 8 }}
-            md={{ offset: 12 }}
+            style={{ paddingTop: "15%" }}
+            md={{ span: 14, offset: 10 }}
+            xs={{ span: 10, offset: 9 }}
           >
-            <GithubFilled />
-            <SkypeFilled />
-            <FacebookFilled />
+            <img className="loader" src={Load}></img>
           </Col>
-          <Col
-            className="headings"
-            xs={{ offset: 1 }}
-            sm={{ offset: 7 }}
-            md={{ offset: 10 }}
+        </Row>
+      ) : (
+        <Layout style={{ backgroundColor: "white" }}>
+          <Header
             style={{
-              color: "rgb(211 84 94 / 99%)",
-              fontSize: "21px",
+              backgroundColor: "#93C572",
+              color: "white",
               fontWeight: "bold",
             }}
           >
-            Copyright &copy; Prachita Nayak | 2021
-          </Col>
-        </Row>
-      </Footer>
+            {" "}
+            <Row classapi="logo" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+              {" "}
+              <Col md={8} xs={12}>
+                <Avatar size={60} src={Logo} />{" "}
+                <span
+                  className="headings"
+                  style={{
+                    fontFamily: " Akaya Telivigala, cursive ",
+                    fontSize: "50px",
+                  }}
+                >
+                  <a href="/" style={{ color: "white" }}>
+                    BaAL
+                  </a>
+                </span>{" "}
+              </Col>
+              <Col classapi="gutter-row" md={12} xs={0}>
+                {" "}
+                <span
+                  style={{
+                    fontFamily: " Akaya Telivigala, cursive ",
+                    fontSize: "40px",
+                  }}
+                >
+                  Bank and ATM Location Finder{" "}
+                </span>
+                <span
+                  style={{
+                    color: "#5d5858",
+                    fontFamily: "Open Sans",
+                    fontSize: "19px",
+                  }}
+                >
+                  | API documentation
+                </span>
+                &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+              </Col>
+              <Col>
+                <span
+                  className="headings"
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "32px",
+                    fontFamily: "Poppins,sans-serif",
+                  }}
+                  onClick={async () => {
+                    await dispatch(logOut());
+                    await dispatch(removeToken());
+                    await dispatch(removeTransaction());
+                    await dispatch(removePlan());
+                    history.push("/dev/login");
+                  }}
+                >
+                  {" "}
+                  Logout <LogoutOutlined />
+                </span>
+              </Col>
+            </Row>{" "}
+          </Header>
+          <Layout
+            style={{
+              padding: "2%",
+              background:
+                "linear-gradient(to top ,white ,  rgb(147, 197, 114) 100% )",
+            }}
+          >
+            <Content
+              style={{
+                color: "#5a5a5a",
+                backgroundColor: "white",
+                borderRadius: "25px",
+                boxShadow: " 0 7px 30px rgba(52, 31, 97, 0.342)",
+              }}
+            >
+              {" "}
+              <Row
+                style={{
+                  color: "gray",
+                  fontFamily: "Amaranth",
+                }}
+              >
+                <Col
+                  className="headings"
+                  md={{ offset: 10 }}
+                  xs={{ offset: 5 }}
+                  style={{ padding: "10px", fontSize: "30px" }}
+                >
+                  Welcome {userDetails.name} !
+                </Col>
+              </Row>
+              <Row>
+                <Col md={{ offset: 4 }} style={{ paddingLeft: "1.7%" }}>
+                  <div
+                    className="men"
+                    style={{
+                      height: "150px",
+                      width: "350px",
+                      backgroundColor: "#F3C363",
+                      color: "white",
+                      fontSize: "27px",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      borderRadius: "25px",
+                    }}
+                  >
+                    <div
+                      onClick={() => setMenu(1)}
+                      style={{
+                        paddingTop: "17%",
+                        height: "200px",
+                        cursor: "pointer",
+                        textShadow: "2px 2px black",
+                        fontFamily: "Poppins, sans-serif ",
+                      }}
+                    >
+                      {" "}
+                      Home
+                    </div>
+                  </div>
+                </Col>
+                <Col style={{ paddingLeft: "1.7%" }}>
+                  <div
+                    className="men"
+                    style={{
+                      height: "150px",
+                      width: "350px",
+                      backgroundColor: "#C2D9D2",
+                      color: "white",
+                      fontSize: "27px",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      borderRadius: "25px",
+                    }}
+                  >
+                    <div
+                      onClick={() => history.push("/api")}
+                      style={{
+                        paddingTop: "17%",
+                        height: "200px",
+                        cursor: "pointer",
+                        fontFamily: "Poppins, sans-serif ",
+                        textShadow: "2px 2px black",
+                      }}
+                    >
+                      Documentation
+                    </div>
+                  </div>
+                </Col>
+                <Col style={{ paddingLeft: "1.7%" }}>
+                  <div
+                    className="men"
+                    style={{
+                      height: "150px",
+                      width: "350px",
+                      backgroundColor: "#765259",
+                      color: "white",
+                      fontSize: "27px",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      borderRadius: "25px",
+                      textShadow: "2px 2px black",
+                    }}
+                  >
+                    <div
+                      onClick={() => setMenu(3)}
+                      style={{
+                        paddingTop: "17%",
+                        cursor: "pointer",
+                        fontFamily: "Poppins, sans-serif ",
+                      }}
+                    >
+                      Profile
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+              <Row>
+                <Col
+                  span={24}
+                  style={{
+                    padding: "5%",
+                  }}
+                >
+                  {menu == 1 ? (
+                    <Row>
+                      <Col xs={{ order: 1 }}>
+                        <span
+                          className="titles"
+                          style={{
+                            fontFamily: "Poppins, sans-serif ",
+                            fontWeight: "bold",
+                            fontSize: "25px",
+                            color: "#5d8b46",
+                          }}
+                        >
+                          {" "}
+                          <BuildOutlined style={{ color: "gray" }} />
+                          API Key :
+                        </span>
+                      </Col>
+                      <Col
+                        md={{ span: 6, offset: 1 }}
+                        xs={{ span: 24, order: 2 }}
+                      >
+                        <Input
+                          style={{
+                            fontFamily: "Poppins, sans-serif ",
+                            fontWeight: "bolder",
+                            fontSize: "18px",
+                            backgroundColor: "white !important",
+                          }}
+                          readOnly
+                          value={userDetails.api}
+                        ></Input>{" "}
+                        <br></br> <br></br> <br></br>
+                      </Col>
+                      <Col xs={0}>
+                        {copied && (
+                          <Alert
+                            message="Copied to clipboard !"
+                            type="success"
+                            showIcon
+                          />
+                        )}
+
+                        <CopyOutlined
+                          onClick={() => {
+                            navigator.clipboard.writeText(userDetails.api);
+                            setCopied(true);
+                            setTimeout(() => {
+                              setCopied(false);
+                            }, 1000);
+                          }}
+                        />
+                      </Col>
+                      <Col md={{ offset: 5 }} xs={{ order: 3 }}>
+                        <span
+                          className="titles"
+                          style={{
+                            fontFamily: "Poppins, sans-serif ",
+                            fontWeight: "bolder",
+                            fontSize: "25px",
+                            color: "#5d8b46",
+                          }}
+                        >
+                          {" "}
+                          <BuildOutlined style={{ color: "gray" }} />
+                          Postman API :
+                        </span>{" "}
+                        <Button
+                          onClick={downloadAPI}
+                          type="round"
+                          style={{
+                            height: "50%",
+                            width: "100%",
+                            fontSize: "100%",
+                            backgroundColor: "rgba(211, 84, 94, 0.99)",
+                            color: "white",
+                            fontFamily: "Poppins, sans-serif ",
+                            boxShadow: " 0 7px 10px rgba(52, 31, 97, 0.342) ",
+                          }}
+                        >
+                          {" "}
+                          <DownloadOutlined /> Download API Collection
+                        </Button>{" "}
+                        <br></br> <br></br> <br></br>
+                      </Col>
+                      <Col md={11} xs={{ span: 24, order: 5 }}>
+                        <span
+                          className="titles"
+                          style={{
+                            fontFamily: "Poppins, sans-serif ",
+                            fontWeight: "bolder",
+                            fontSize: "25px",
+                            color: "#5d8b46",
+                          }}
+                        >
+                          <BuildOutlined style={{ color: "gray" }} />
+                          API usage :
+                        </span>
+                      </Col>
+                      <Col
+                        md={{ span: 8, offset: 5 }}
+                        xs={{ span: 24, order: 4 }}
+                      >
+                        <span
+                          className="titles"
+                          style={{
+                            fontFamily: "Poppins, sans-serif ",
+                            fontWeight: "bolder",
+                            fontSize: "25px",
+                            color: "#5d8b46",
+                          }}
+                        >
+                          <BuildOutlined style={{ color: "gray" }} />
+                          API hits available :{" "}
+                          <span
+                            className="titles"
+                            title="Available api hits"
+                            style={{
+                              color: "#315B34",
+                              padding: "2%",
+                              fontSize: "100%",
+                              fontWeight: "bold",
+                              textDecoration: "underline",
+                            }}
+                          >
+                            {" "}
+                            {limit}
+                          </span>
+                          &nbsp;
+                          {limit == 0 && (
+                            <a style={{ fontSize: "14px" }} href="/dev/plan">
+                              {" "}
+                              Upgrade Subscription
+                            </a>
+                          )}
+                        </span>{" "}
+                        <br></br> <br></br> <br></br>
+                      </Col>
+                      <br></br> <br></br> <br></br>
+                      <Col md={24} xs={{ order: 6 }}>
+                        <Table
+                          respo
+                          style={{
+                            fontSize: "70%",
+                            fontFamily: "Poppins, sans-serif",
+                          }}
+                          columns={columns}
+                          dataSource={data}
+                          onChange={onChange}
+                        />
+                      </Col>
+                    </Row>
+                  ) : menu == 2 ? null : (
+                    <Row>
+                      <Col md={5} xs={24}>
+                        {" "}
+                        <Button
+                          onClick={() => history.push("plan")}
+                          style={{
+                            height: "70px",
+                            width: "290px",
+                            fontSize: "24px",
+                            backgroundColor: "#6356B5",
+                            color: "white",
+                            fontFamily: "Poppins, sans-serif ",
+                          }}
+                          type="round"
+                        >
+                          {" "}
+                          Change API Plan
+                        </Button>{" "}
+                      </Col>
+                      <Col span={5}>
+                        {" "}
+                        <Button
+                          style={{
+                            height: "70px",
+                            width: "290px",
+                            fontSize: "24px",
+                            backgroundColor: "#315B34 ",
+                            color: "white",
+                            fontFamily: "Poppins, sans-serif ",
+                          }}
+                          type="round"
+                          onClick={showUpdateProfileModal}
+                        >
+                          {" "}
+                          Update Profile
+                        </Button>{" "}
+                        <Modal
+                          title="Update Profile"
+                          visible={IsProfileModalVisible}
+                          onOk={handleUpdateProfileOk}
+                          onCancel={handleUpdateProfileCancel}
+                          footer={[
+                            <Button
+                              className="mod"
+                              key="back"
+                              onClick={handleUpdateProfileCancel}
+                            >
+                              Cancel
+                            </Button>,
+                            <Button
+                              className="mod"
+                              key="submit"
+                              type="primary"
+                              onClick={handleUpdateProfileOk}
+                            >
+                              Update
+                            </Button>,
+                          ]}
+                        >
+                          {msg && (
+                            <Alert
+                              message={updatedText}
+                              type={updatedMsg}
+                              showIcon
+                            />
+                          )}
+                          {error && (
+                            <span style={{ color: "red", fontSize: "18px" }}>
+                              {" "}
+                              Invalid input !
+                            </span>
+                          )}
+                          <br></br>
+                          Name :
+                          <Input
+                            onFocus={() => setError(false)}
+                            value={name}
+                            onChange={(e) => {
+                              setName(e.target.value);
+                            }}
+                            required
+                            style={{
+                              height: "40px",
+                              color: "black",
+                              fontSize: "20px",
+                            }}
+                            placeholder="Name"
+                          />
+                          Email:
+                          <Input
+                            value={userDetails.email}
+                            readOnly
+                            style={{
+                              height: "40px",
+                              fontSize: "20px",
+                              color: "gray",
+                            }}
+                            placeholder="Email"
+                          />
+                          <Divider
+                            onClick={() => setChangePassword(!changePassword)}
+                            type="horizontal"
+                          >
+                            {" "}
+                            <EditOutlined />
+                            Change Password
+                          </Divider>
+                          {changePassword && (
+                            <div>
+                              {passwordErr && (
+                                <span
+                                  style={{ color: "red", fontSize: "18px" }}
+                                >
+                                  {passwordErrMsg}
+                                </span>
+                              )}
+                              <br></br>
+                              Enter new Password:
+                              <Input.Password
+                                value={currentPassword}
+                                onChange={(e) =>
+                                  setCurrentPassword(e.target.value)
+                                }
+                                onFocus={() => setPasswordErr(false)}
+                                style={{
+                                  height: "40px",
+                                  color: "gray",
+                                }}
+                                placeholder="Password"
+                                iconRender={(visible) =>
+                                  visible ? (
+                                    <EyeTwoTone />
+                                  ) : (
+                                    <EyeInvisibleOutlined />
+                                  )
+                                }
+                              />
+                              Re-enter Password:
+                              <Input.Password
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                onFocus={() => setPasswordErr(false)}
+                                style={{
+                                  height: "40px",
+                                  color: "gray",
+                                }}
+                                placeholder="Password"
+                                iconRender={(visible) =>
+                                  visible ? (
+                                    <EyeTwoTone />
+                                  ) : (
+                                    <EyeInvisibleOutlined />
+                                  )
+                                }
+                              />
+                            </div>
+                          )}
+                        </Modal>
+                      </Col>
+                      <Divider></Divider>
+                      <Col span={24}>
+                        {" "}
+                        <Descriptions
+                          title="Account Details"
+                          bordered
+                          column={1}
+                          style={{
+                            boxShadow: "  8px 8px 8px -8px gray",
+                            fontSize: "70%",
+                          }}
+                        >
+                          <Descriptions.Item
+                            label="Name"
+                            style={{
+                              backgroundColor: "#ffffff78",
+                              fontSize: "150%",
+                              fontFamily: "Poppins, sans-serif ",
+                            }}
+                          >
+                            {userDetails.name}
+                          </Descriptions.Item>
+                          <Descriptions.Item
+                            style={{
+                              backgroundColor: "#ffffff78",
+                              fontSize: "150%",
+                              fontFamily: "Poppins, sans-serif ",
+                            }}
+                            label="Email"
+                          >
+                            {userDetails.email}
+                          </Descriptions.Item>
+                          <Descriptions.Item
+                            style={{
+                              backgroundColor: "#ffffff78",
+                              fontSize: "150%",
+                              fontFamily: "Poppins, sans-serif ",
+                            }}
+                            label="Password"
+                          >
+                            ***** &nbsp;&nbsp;&nbsp;
+                            <Button
+                              className="update"
+                              type="round"
+                              size="large"
+                              style={{
+                                backgroundColor: "#1e8aff",
+                                color: "white",
+                              }}
+                              onClick={() => {
+                                setChangePassword(true);
+                                showUpdateProfileModal();
+                              }}
+                            >
+                              {" "}
+                              Update password{" "}
+                            </Button>
+                          </Descriptions.Item>
+                          <Descriptions.Item
+                            style={{
+                              backgroundColor: "#ffffff78",
+                              fontSize: "150%",
+                              fontFamily: "Poppins, sans-serif ",
+                            }}
+                            label="Api Subscription type :"
+                          >
+                            {plan}
+                          </Descriptions.Item>
+                          <Descriptions.Item
+                            style={{
+                              backgroundColor: "#ffffff78",
+                              fontSize: "150%",
+                              fontFamily: "Poppins, sans-serif ",
+                            }}
+                            label="Subscription Expiry Date :"
+                          >
+                            {expiryDate == "null"
+                              ? "N/A"
+                              : moment
+                                  .utc(new Date(expiryDate).toISOString())
+
+                                  .format("dddd, MMMM D,YYYY")}
+                          </Descriptions.Item>
+                        </Descriptions>
+                      </Col>
+                    </Row>
+                  )}
+                </Col>
+              </Row>
+            </Content>
+          </Layout>
+
+          <Footer
+            style={{
+              backgroundColor: "#93C572",
+              height: "150px",
+              color: "white",
+            }}
+          >
+            <Row>
+              <Col
+                className="headings"
+                style={{ color: "black", fontSize: "30px" }}
+                xs={{ offset: 8 }}
+                md={{ offset: 12 }}
+              >
+                <GithubFilled />
+                <SkypeFilled />
+                <FacebookFilled />
+              </Col>
+              <Col
+                className="headings"
+                xs={{ offset: 1 }}
+                sm={{ offset: 7 }}
+                md={{ offset: 10 }}
+                style={{
+                  color: "rgb(211 84 94 / 99%)",
+                  fontSize: "21px",
+                  fontWeight: "bold",
+                }}
+              >
+                Copyright &copy; Prachita Nayak | 2021
+              </Col>
+            </Row>
+          </Footer>
+        </Layout>
+      )}
     </Layout>
   );
 };

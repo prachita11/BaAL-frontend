@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 import { Layout, Button, Card, Row, Col, Alert } from "antd";
 import { useHistory } from "react-router-dom";
 import circle from "./check-circle.svg";
-import cross from "./x-square.svg";
-import moment from "moment";
 import "moment-timezone";
 import "leaflet/dist/leaflet.css";
+import Load from "./load.svg";
 import "./styles/DeveloperDashboard.css";
 import React from "react";
 import "../App.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setPlan } from "../redux/index";
 import "./styles/Payment.css";
 const { Content } = Layout;
@@ -17,7 +16,11 @@ const { Content } = Layout;
 const Payment = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [showLoader, setshowLoader] = useState(true);
   /* ------------Select data population --------------*/
+  useEffect(() => {
+    setTimeout(() => setshowLoader(false), 2000);
+  }, []);
   const choosePayment = async (plan, price, limit) => {
     await dispatch(setPlan({ plan: plan, price: price, limit: limit }));
     return history.push("checkout");
@@ -142,27 +145,40 @@ const Payment = () => {
   /* ------------View --------------*/
   return (
     <Layout>
-      <Layout>
-        <Content
-          className="ca"
-          style={{
-            color: "#5a5a5a",
-            boxShadow: "    6px 6px 8px 8px gray",
-            height: "100vh",
-            background: "#f8f9fb",
-          }}
-        >
-          <div
+      {" "}
+      {showLoader ? (
+        <Row style={{ height: "100vh" }}>
+          <Col
+            style={{ paddingTop: "15%" }}
+            md={{ span: 14, offset: 10 }}
+            xs={{ span: 10, offset: 9 }}
+          >
+            <img className="loader" src={Load}></img>
+          </Col>
+        </Row>
+      ) : (
+        <Layout>
+          <Content
+            className="ca"
             style={{
-              paddingTop: "1%",
-              paddingLeft: "1%",
-              height: "100%",
+              color: "#5a5a5a",
+              boxShadow: "    6px 6px 8px 8px gray",
+              height: "100vh",
+              background: "#f8f9fb",
             }}
           >
-            <Row>{plans}</Row>
-          </div>
-        </Content>
-      </Layout>
+            <div
+              style={{
+                paddingTop: "1%",
+                paddingLeft: "1%",
+                height: "100%",
+              }}
+            >
+              <Row>{plans}</Row>
+            </div>
+          </Content>
+        </Layout>
+      )}
     </Layout>
   );
 };

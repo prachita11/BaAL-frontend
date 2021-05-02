@@ -41,7 +41,7 @@ const ForgotPassword = () => {
       <Content
         style={{
           background:
-            "linear-gradient(to right ,white 70%,  rgb(147, 197, 114) 30%)",
+            "linear-gradient(to bottom ,white 70%,  rgb(147, 197, 114) 30%)",
           height: "100vh",
         }}
       >
@@ -122,7 +122,8 @@ const ForgotPassword = () => {
 
               <Col
                 className="forgotp"
-                span={24}
+                md={24}
+                xs={{ span: 20, offset: 4 }}
                 style={{
                   paddingTop: "2%",
                   paddingLeft: "10%",
@@ -130,6 +131,7 @@ const ForgotPassword = () => {
                 }}
               >
                 <Button
+                  className="update"
                   block
                   type="primary"
                   block
