@@ -447,7 +447,7 @@ const DeveloperDashboard = () => {
                         ></Input>{" "}
                         <br></br> <br></br> <br></br>
                       </Col>
-                      <Col xs={0}>
+                      <Col xs={0} md={{ order: 3, span: 3 }}>
                         {copied && (
                           <Alert
                             message="Copied to clipboard !"
@@ -466,7 +466,7 @@ const DeveloperDashboard = () => {
                           }}
                         />
                       </Col>
-                      <Col md={{ offset: 5 }} xs={{ order: 3 }}>
+                      <Col md={{ offset: 2 }} xs={{ order: 3 }}>
                         <span
                           className="titles"
                           style={{
