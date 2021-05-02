@@ -74,6 +74,9 @@
 }
 
 @media screen and (max-width: 720px) {
+  .checkout {
+    display: none !important;
+  }
   .search {
     height: 85vh !important;
   }

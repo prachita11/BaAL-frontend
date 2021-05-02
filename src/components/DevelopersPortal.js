@@ -53,10 +53,17 @@ const Developer = () => {
                 boxShadow: "0 7px 30px rgba(52, 31, 97, 30.342)",
               }}
             >
-              <Avatar src={Logo} size={125}></Avatar>
+              <Avatar
+                style={{ cursor: "pointer" }}
+                onClick={() => history.push("/")}
+                src={Logo}
+                size={125}
+              ></Avatar>
               <Col
+                onClick={() => history.push("/")}
                 className="logo"
                 style={{
+                  cursor: "pointer",
                   fontSize: "3.95rem",
                   color: "rgb(147, 197, 114)",
                   fontWeight: "bold",

@@ -189,23 +189,29 @@ const CheckoutForm = () => {
             >
               <Col md={13} xs={24}>
                 <img
+                  className="checkout"
                   src={process.env.PUBLIC_URL + "/checkout.jpeg"}
                   width={"60%"}
                 ></img>
                 <br></br>
-                <Avatar src={Logo} size={125}></Avatar>
+
                 <span
+                  onClick={() => history.push("/")}
                   style={{
+                    cursor: "pointer",
                     fontSize: "90px",
                     paddingLeft: "5%",
                     color: "white",
                     fontFamily: "Akaya Telivigala, cursive",
                   }}
                 >
+                  <Avatar size={128} src={Logo}></Avatar>
                   BaAL
                 </span>
                 <span
+                  onClick={() => history.push("/")}
                   style={{
+                    cursor: "pointer",
                     fontSize: "1.75rem",
                     color: "gray",
                     fontFamily: "Poppins, sans-serif",
