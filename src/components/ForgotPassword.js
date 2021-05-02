@@ -122,7 +122,7 @@ const ForgotPassword = () => {
 
               <Col
                 className="forgotp"
-                md={24}
+                md={{ span: 24, offset: 0 }}
                 xs={{ span: 20, offset: 4 }}
                 style={{
                   paddingTop: "2%",
