@@ -455,8 +455,13 @@ const DeveloperDashboard = () => {
                             showIcon
                           />
                         )}
-
+                        &nbsp;&nbsp;&nbsp;
                         <CopyOutlined
+                          style={{
+                            color: "purple",
+                            fontWeight: "bold",
+                            fontSize: "24px",
+                          }}
                           onClick={() => {
                             navigator.clipboard.writeText(userDetails.api);
                             setCopied(true);
