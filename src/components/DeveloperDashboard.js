@@ -539,7 +539,8 @@ const DeveloperDashboard = () => {
                         >
                           <BuildOutlined style={{ color: "gray" }} />
                           API hits available :{" "}
-                          {moment(new Date().toISOString()).isSameOrAfter(
+                          {expiryDate != "null" &&
+                          moment(new Date().toISOString()).isSameOrAfter(
                             new Date(expiryDate).toISOString()
                           ) ? (
                             <span
