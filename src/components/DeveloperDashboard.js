@@ -166,6 +166,11 @@ const DeveloperDashboard = () => {
       responsive: ["xs", "md"],
     },
     {
+      title: "IP address",
+      dataIndex: "ip",
+      responsive: ["md"],
+    },
+    {
       title: "Response Status",
       dataIndex: "status",
       sorter: {
@@ -185,6 +190,7 @@ const DeveloperDashboard = () => {
         .utc(element.executionDate)
         .tz("Asia/Calcutta")
         .format("dddd, MMMM D,YYYY,hh:mm a"),
+      ip: element.ipv4,
       status: element.response,
     });
   });

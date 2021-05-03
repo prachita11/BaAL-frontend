@@ -12,6 +12,7 @@ const transactionReducer = (state = initialState, action) => {
         transaction.push({
           request: element.request,
           response: element.response,
+          ipv4: element.ipv4,
           executionDate: element.executionDate,
         });
       });
