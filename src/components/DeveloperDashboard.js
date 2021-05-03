@@ -539,22 +539,44 @@ const DeveloperDashboard = () => {
                         >
                           <BuildOutlined style={{ color: "gray" }} />
                           API hits available :{" "}
-                          <span
-                            className="titles"
-                            title="Available api hits"
-                            style={{
-                              color: "#315B34",
-                              padding: "2%",
-                              fontSize: "100%",
-                              fontWeight: "bold",
-                              textDecoration: "underline",
-                            }}
-                          >
-                            {" "}
-                            {limit}
-                          </span>
+                          {moment(new Date().toISOString()).isSameOrAfter(
+                            new Date(expiryDate).toISOString()
+                          ) ? (
+                            <span
+                              className="titles"
+                              title="Available api hits"
+                              style={{
+                                color: "#315B34",
+                                padding: "2%",
+                                fontSize: "100%",
+                                fontWeight: "bold",
+                                textDecoration: "underline",
+                              }}
+                            >
+                              {" "}
+                              Plan expired
+                            </span>
+                          ) : (
+                            <span
+                              className="titles"
+                              title="Available api hits"
+                              style={{
+                                color: "#315B34",
+                                padding: "2%",
+                                fontSize: "100%",
+                                fontWeight: "bold",
+                                textDecoration: "underline",
+                              }}
+                            >
+                              {" "}
+                              {limit}
+                            </span>
+                          )}
                           &nbsp;
-                          {limit == 0 && (
+                          {(limit == 0 ||
+                            moment(new Date().toISOString()).isSameOrAfter(
+                              new Date(expiryDate).toISOString()
+                            )) && (
                             <a style={{ fontSize: "14px" }} href="/dev/plan">
                               {" "}
                               Upgrade Subscription
