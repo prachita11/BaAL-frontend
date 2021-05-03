@@ -326,7 +326,7 @@ const DeveloperDashboard = () => {
                     style={{
                       height: "150px",
                       width: "350px",
-                      backgroundColor: "#F3C363",
+                      backgroundColor: "rgb(118 82 89 / 75%)",
                       color: "white",
                       fontSize: "27px",
                       textAlign: "center",
@@ -383,7 +383,7 @@ const DeveloperDashboard = () => {
                     style={{
                       height: "150px",
                       width: "350px",
-                      backgroundColor: "#765259",
+                      backgroundColor: "rgb(243, 195, 99)",
                       color: "white",
                       fontSize: "27px",
                       textAlign: "center",
