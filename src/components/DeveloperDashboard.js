@@ -548,7 +548,7 @@ const DeveloperDashboard = () => {
                               style={{
                                 color: "#315B34",
                                 padding: "2%",
-                                fontSize: "100%",
+                                fontSize: "60%",
                                 fontWeight: "bold",
                                 textDecoration: "underline",
                               }}
