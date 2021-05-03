@@ -81,11 +81,9 @@ const DeveloperDashboard = () => {
     setIsProfileModalVisible(true);
     setMsg(false);
   };
-
   useEffect(() => {
     setTimeout(() => setshowLoader(false), 2000);
   }, []);
-
   const handleUpdateProfileOk = async () => {
     let data = {
       email: userDetails.email,
@@ -539,7 +537,9 @@ const DeveloperDashboard = () => {
                         >
                           <BuildOutlined style={{ color: "gray" }} />
                           API hits available :{" "}
-                          {expiryDate != "null" &&
+                          {expiryDate !== "N/A" &&
+                          expiryDate !== "null" &&
+                          expiryDate !== null &&
                           moment(new Date().toISOString()).isSameOrAfter(
                             new Date(expiryDate).toISOString()
                           ) ? (
@@ -575,9 +575,12 @@ const DeveloperDashboard = () => {
                           )}
                           &nbsp;
                           {(limit == 0 ||
-                            moment(new Date().toISOString()).isSameOrAfter(
-                              new Date(expiryDate).toISOString()
-                            )) && (
+                            (expiryDate !== "N/A" &&
+                              expiryDate !== "null" &&
+                              expiryDate !== null &&
+                              moment(new Date().toISOString()).isSameOrAfter(
+                                new Date(expiryDate).toISOString()
+                              ))) && (
                             <a style={{ fontSize: "14px" }} href="/dev/plan">
                               {" "}
                               Upgrade Subscription
