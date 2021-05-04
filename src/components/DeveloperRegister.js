@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Layout, Row, Col, Input, Button, Spin, Avatar } from "antd";
 import "leaflet/dist/leaflet.css";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import React from "react";
 import Logo from "./logo.jpg";
@@ -192,7 +193,7 @@ const DeveloperRegister = () => {
                   paddingRight: "10%",
                 }}
               >
-                <Input
+                <Input.Password
                   onKeyPress={(e) => (e.key === "Enter" ? onSubscribe() : null)}
                   required
                   onFocus={() => setError(false)}
@@ -204,6 +205,9 @@ const DeveloperRegister = () => {
                     color: "gray",
                   }}
                   placeholder="Password"
+                  iconRender={(visible) =>
+                    visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                  }
                 />
                 <br></br>
                 <br></br>
